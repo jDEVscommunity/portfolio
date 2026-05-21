@@ -46,7 +46,7 @@ portfolio/
 **Demo (produção):** [https://port-pi-teal.vercel.app](https://port-pi-teal.vercel.app)
 
 ```bash
-git clone https://github.com/dav1skk/portfolio.git
+git clone https://github.com/jDEVscommunity/portfolio.git
 cd portfolio
 python -m venv .venv
 
@@ -97,7 +97,7 @@ gh repo create portfolio --public --source=. --remote=origin --push
 Ou crie o repositório **portfolio** em [github.com/new](https://github.com/new) e depois:
 
 ```bash
-git remote add origin https://github.com/dav1skk/portfolio.git
+git remote add origin https://github.com/jDEVscommunity/portfolio.git
 git push -u origin main
 ```
 
@@ -105,7 +105,7 @@ git push -u origin main
 
 ### Opção A — GitHub (recomendado)
 
-1. Faça push deste repositório para `github.com/dav1skk/portfolio`.
+1. Faça push deste repositório para `github.com/jDEVscommunity/portfolio`.
 2. Em [vercel.com/new](https://vercel.com/new), importe o repositório **portfolio**.
 3. A Vercel detecta Flask via `app.py` e `requirements.txt`.
 4. Adicione as variáveis de ambiente de produção.
