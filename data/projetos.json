@@ -1,0 +1,59 @@
+[
+  {
+    "slug": "grupo-ln",
+    "titulo": "Grupo L&N",
+    "subtitulo": "Aplicação objetiva, escopo enxuto e go-live rápido",
+    "categoria": "Entrega simples",
+    "destaque": true,
+    "ano": "2026",
+    "cliente": "Grupo L&N",
+    "resumo": "Produto digital direto ao ponto — poucas integrações, fluxos essenciais e colocação em produção sem camadas desnecessárias.",
+    "descricao": "O Grupo L&N precisava sair do operacional manual com uma aplicação clara e mantível. Priorizamos o que destravava o negócio: escopo enxuto, integrações só onde faziam diferença e entregas frequentes até o go-live.\n\nA solução ficou objetiva de operar e evoluir — alinhada ao que o time já fazia no dia a dia, sem reinventar processos por software.",
+    "resultados": [
+      { "valor": "Go-live", "label": "rápido e previsível" },
+      { "valor": "Enxuto", "label": "escopo sem excesso" },
+      { "valor": "100%", "label": "código documentado" }
+    ],
+    "tags": ["Web", "Integrações", "Go-live"],
+    "tecnologias": ["react", "python", "postgresql"],
+    "accent": "220 38% 42%"
+  },
+  {
+    "slug": "macro",
+    "titulo": "Macro",
+    "subtitulo": "Fluxos claros, stack enxuta e manutenção simples",
+    "categoria": "Entrega simples",
+    "destaque": true,
+    "ano": "2026",
+    "cliente": "Macro",
+    "resumo": "Solução pensada de forma direta — foco no essencial para colocar tudo no ar sem complicar a operação.",
+    "descricao": "Na Macro, o desafio era colocar software em produção sem sobrecarregar quem opera o produto. Desenhamos fluxos legíveis, stack enxuta e contratos simples entre front e API.\n\nO time manteve o foco no essencial: releases curtas, manutenção acessível e evolução após o lançamento sem refatorações desnecessárias.",
+    "resultados": [
+      { "valor": "Stack", "label": "enxuta e mantível" },
+      { "valor": "Fluxos", "label": "claros para operação" },
+      { "valor": "Produção", "label": "sem atrito no go-live" }
+    ],
+    "tags": ["React", "APIs", "Operação"],
+    "tecnologias": ["react", "nodejs", "typescript"],
+    "accent": "160 45% 38%"
+  },
+  {
+    "slug": "cadastro-rural",
+    "titulo": "Cadastro Rural",
+    "subtitulo": "Regras densas, múltiplas integrações e evolução contínua",
+    "categoria": "Entrega complexa",
+    "destaque": true,
+    "ano": "2026",
+    "cliente": "Cadastro Rural",
+    "resumo": "Plataforma com regras de negócio complexas, integrações de ponta a ponta e arquitetura preparada para releases previsíveis.",
+    "descricao": "O Cadastro Rural exigia muito mais que um CRUD: validações cruzadas, integrações com sistemas parceiros e evolução constante de regras regulatórias e operacionais.\n\nEstruturamos domínios, contratos de API e documentação para suportar a complexidade — com squad dedicado, filas onde necessário e roadmap de releases alinhado ao negócio.",
+    "resultados": [
+      { "valor": "Multi", "label": "integrações ativas" },
+      { "valor": "Releases", "label": "previsíveis" },
+      { "valor": "100%", "label": "arquitetura documentada" }
+    ],
+    "tags": ["Regras de negócio", "Integrações", "PostgreSQL"],
+    "tecnologias": ["laravel", "react", "postgresql", "docker"],
+    "accent": "28 72% 48%"
+  }
+]

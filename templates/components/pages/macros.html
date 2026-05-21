@@ -1,0 +1,102 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_title_h2, hero_lead, hero_highlights, hero_actions, hero_footer %}
+
+{% macro page_section_head(eyebrow, title, lead=none) %}
+<header class="page-section__head">
+  {{ hero_eyebrow(eyebrow) }}
+  {{ hero_title_h2(title) }}
+  {% if lead %}{{ hero_lead(lead) }}{% endif %}
+</header>
+{% endmacro %}
+
+{% macro project_card(projeto, featured=false, index=1) %}
+<article
+  class="project-card{% if featured %} project-card--featured{% endif %}{% if projeto.destaque %} project-card--destaque{% endif %}"
+  data-category="{{ projeto.categoria }}"
+  style="--project-accent: {{ projeto.accent or '220 38% 42%' }}"
+>
+  <a href="{{ url_for('projeto_detalhe', slug=projeto.slug) }}" class="project-card__link">
+    <div class="project-card__visual" aria-hidden="true">
+      <span class="project-card__visual-index">{{ '%02d'|format(index) }}</span>
+      <div class="project-card__visual-grid"></div>
+    </div>
+    <div class="project-card__body">
+      <div class="project-card__meta">
+        <span class="project-card__category">{{ projeto.categoria }}</span>
+        <span class="project-card__year">{{ projeto.ano }}</span>
+      </div>
+      <h3 class="project-card__title">{{ projeto.titulo }}</h3>
+      <p class="project-card__resumo">{{ projeto.resumo }}</p>
+      {% if projeto.tags %}
+      <ul class="project-card__tags" aria-label="Tecnologias">
+        {% for tag in projeto.tags[:4] %}
+        <li class="project-card__tag">{{ tag }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <span class="project-card__cta">Ver case <span aria-hidden="true">→</span></span>
+    </div>
+  </a>
+</article>
+{% endmacro %}
+
+{% macro team_card(membro) %}
+<article class="team-card">
+  <div class="team-card__avatar" aria-hidden="true">
+    <span class="team-card__initials">{{ membro.inicial }}</span>
+    <div class="team-card__avatar-ring"></div>
+  </div>
+  <div class="team-card__body">
+    <h3 class="team-card__nome">{{ membro.nome }}</h3>
+    <p class="team-card__cargo">{{ membro.cargo }}</p>
+    <p class="team-card__bio">{{ membro.bio }}</p>
+    {% if membro.foco %}
+    <ul class="team-card__foco" aria-label="Áreas de foco">
+      {% for item in membro.foco %}
+      <li class="team-card__foco-item">{{ item }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="team-card__links">
+      {% if membro.linkedin %}
+      <a href="{{ membro.linkedin }}" class="team-card__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      {% endif %}
+      {% if membro.github %}
+      <a href="{{ membro.github }}" class="team-card__link" target="_blank" rel="noopener noreferrer">GitHub</a>
+      {% endif %}
+    </div>
+  </div>
+</article>
+{% endmacro %}
+
+{% macro value_card(index, title, desc) %}
+<li class="page-value-card" role="listitem">
+  <span class="page-value-card__index" aria-hidden="true">{{ '%02d'|format(index) }}</span>
+  <h3 class="page-value-card__title">{{ title }}</h3>
+  <p class="page-value-card__desc">{{ desc }}</p>
+</li>
+{% endmacro %}
+
+{% macro process_step(index, title, desc) %}
+<li class="page-process__step" role="listitem">
+  <span class="page-process__index" aria-hidden="true">{{ '%02d'|format(index) }}</span>
+  <div class="page-process__content">
+    <h3 class="page-process__title">{{ title }}</h3>
+    <p class="page-process__desc">{{ desc }}</p>
+  </div>
+</li>
+{% endmacro %}
+
+{% macro contact_channel(icon, label, value, href=none, hint=none) %}
+<div class="contact-channel">
+  <div class="contact-channel__icon" aria-hidden="true">{{ icon }}</div>
+  <div class="contact-channel__text">
+    <span class="contact-channel__label">{{ label }}</span>
+    {% if href %}
+    <a href="{{ href }}" class="contact-channel__value">{{ value }}</a>
+    {% else %}
+    <span class="contact-channel__value">{{ value }}</span>
+    {% endif %}
+    {% if hint %}<span class="contact-channel__hint">{{ hint }}</span>{% endif %}
+  </div>
+</div>
+{% endmacro %}

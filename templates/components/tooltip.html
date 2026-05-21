@@ -1,0 +1,26 @@
+{#
+  Uso:
+  {% from 'components/tooltip.html' import tooltip %}
+  {% call tooltip('Texto do tooltip', 'top', tooltip_id='meu-tooltip') %}
+    <button type="button" aria-labelledby="meu-tooltip">...</button>
+  {% endcall %}
+
+  Não use o atributo title no elemento interno — o tooltip customizado substitui o nativo.
+
+  Demais botões, links e controles recebem tooltip automaticamente via tooltip.js
+  (texto de data-tooltip, title, aria-label ou rótulo visível). Use data-tooltip="off"
+  ou class="no-tooltip" para desativar. data-tooltip-position: top | bottom | left | right.
+
+  position: top | bottom | left | right
+  fixed: true para ancorar no canto (ex.: botão de tema)
+  tooltip_id: id do span (obrigatório se o texto for atualizado via JS)
+#}
+{% macro tooltip(text, position='top', fixed=false, tooltip_id=none) %}
+<span class="tooltip-host tooltip-host--{{ position }}{% if fixed %} tooltip-host--fixed{% endif %}">
+  {{ caller() }}
+  <span
+    class="tooltip"
+    {% if tooltip_id %}id="{{ tooltip_id }}"{% endif %}
+  >{{ text }}</span>
+</span>
+{% endmacro %}

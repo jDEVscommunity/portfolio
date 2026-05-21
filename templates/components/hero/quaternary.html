@@ -1,0 +1,18 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_tech_carousel %}
+
+<section class="hero hero--quaternary" aria-label="Tecnologias utilizadas">
+  <div class="hero__frame hero__frame--quaternary">
+    <div class="hero__layout hero__layout--quaternary">
+      <header class="hero__quaternary-head">
+        {{ hero_eyebrow('Stack') }}
+        {{ hero_title_h2('Tecnologias utilizadas') }}
+        {{ hero_lead(
+          'Ferramentas e linguagens que dominamos no dia a dia — do front ao back, '
+          'com bases sólidas para escalar produto e integração.'
+        ) }}
+      </header>
+
+      {{ hero_tech_carousel(tecnologias) }}
+    </div>
+  </div>
+</section>

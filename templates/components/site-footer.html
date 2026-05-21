@@ -1,0 +1,62 @@
+{% from 'components/header-nav-item.html' import nav_item %}
+
+<footer class="site-footer" aria-label="Rodapé">
+  <div class="site-footer__frame">
+    <div class="site-footer__layout">
+      <div class="site-footer__brand hero-reveal">
+        <a href="{{ url_for('index') }}" class="site-footer__logo">
+          <img
+            src="{{ url_for('static', filename='img/logo-dark.png') }}"
+            alt="jDEVs"
+            class="site-footer__logo-img site-footer__logo-img--light"
+            width="168"
+            height="56"
+            decoding="async"
+          >
+          <img
+            src="{{ url_for('static', filename='img/logo-light.png') }}"
+            alt=""
+            class="site-footer__logo-img site-footer__logo-img--dark"
+            width="168"
+            height="56"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </a>
+        <p class="site-footer__slogan">A equipe que faz acontecer</p>
+        <p class="site-footer__lead">
+          Produtos digitais, plataformas e integrações — do discovery ao deploy,
+          com engenharia e entrega no mesmo fluxo.
+        </p>
+      </div>
+
+      <nav class="site-footer__nav hero-reveal" aria-label="Navegação do rodapé">
+        <p class="site-footer__nav-title">Navegação</p>
+        <ul class="site-footer__nav-list">
+          <li><a href="{{ url_for('index') }}" class="site-footer__link">Início</a></li>
+          <li><a href="{{ url_for('projetos') }}" class="site-footer__link">Projetos</a></li>
+          <li><a href="{{ url_for('equipe') }}" class="site-footer__link">Equipe</a></li>
+          <li><a href="{{ url_for('contato') }}" class="site-footer__link">Contato</a></li>
+        </ul>
+      </nav>
+
+      <div class="site-footer__contact hero-reveal">
+        <p class="site-footer__nav-title">Fale conosco</p>
+        <p class="site-footer__contact-text">
+          Conte o desafio do seu produto. Respondemos em até um dia útil.
+        </p>
+        <a href="{{ url_for('contato') }}" class="site-footer__cta">Agendar conversa</a>
+        <a href="mailto:jdevscommunity@protonmail.com" class="site-footer__mailto">jdevscommunity@protonmail.com</a>
+      </div>
+    </div>
+
+    <div class="site-footer__bar hero-reveal">
+      <p class="site-footer__copy">
+        <span>&copy; {{ current_year }} jDEVs</span>
+        <span class="site-footer__copy-sep" aria-hidden="true">·</span>
+        <span>Desenvolvimento de software</span>
+      </p>
+      <p class="site-footer__note">Feito com precisão em cada release.</p>
+    </div>
+  </div>
+</footer>

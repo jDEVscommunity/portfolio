@@ -1,0 +1,10 @@
+[
+  { "name": "React", "slug": "react" },
+  { "name": "TypeScript", "slug": "typescript" },
+  { "name": "PHP", "slug": "php" },
+  { "name": "Laravel", "slug": "laravel" },
+  { "name": "Node.js", "slug": "nodejs" },
+  { "name": "Python", "slug": "python" },
+  { "name": "PostgreSQL", "slug": "postgresql" },
+  { "name": "Docker", "slug": "docker" }
+]

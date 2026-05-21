@@ -1,0 +1,18 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_testimonial_cards %}
+
+<section class="hero hero--senary" aria-label="Avaliações de clientes">
+  <div class="hero__frame hero__frame--senary">
+    <div class="hero__layout hero__layout--senary">
+      <header class="hero__senary-head">
+        {{ hero_eyebrow('Clientes') }}
+        {{ hero_title_h2('Quem já confiou na jDEVs') }}
+        {{ hero_lead(
+          'Times de produto e tecnologia que precisavam sair do slide e '
+          'colocar software em produção — com entrega previsível e evolução após o go-live.'
+        ) }}
+      </header>
+
+      {{ hero_testimonial_cards(avaliacoes) }}
+    </div>
+  </div>
+</section>

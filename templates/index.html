@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Início{% endblock %}
+
+{% block extra_css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% endblock %}
+
+{% block hero %}
+{% include 'components/hero/primary.html' %}
+{% endblock %}
+
+{% block content %}
+{% include 'components/hero/secondary.html' %}
+<div class="hero-sections-brand">
+  {% include 'components/hero/brand-watermark.html' %}
+  {% include 'components/hero/tertiary.html' %}
+  {% include 'components/hero/quaternary.html' %}
+</div>
+{% include 'components/hero/senary.html' %}
+{% include 'components/hero/quinary.html' %}
+{% include 'components/footer.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero-tech-carousel.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero-count-up.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero-floats.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero-terminal.js') }}" defer></script>
+{% endblock %}

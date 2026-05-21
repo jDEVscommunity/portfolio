@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+{% from 'components/hero/macros.html' import hero_actions %}
+{% from 'components/pages/macros.html' import page_section_head, contact_channel %}
+
+{% block title %}Contato{% endblock %}
+
+{% block extra_css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% endblock %}
+
+{% block hero %}
+{% include 'components/pages/contato-intro.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="page">
+  <section class="page-section" id="mensagem" aria-label="Formulário e canais">
+    <div class="page-section__frame">
+      {{ page_section_head(
+        'Mensagem',
+        'Envie um briefing ou agende uma conversa',
+        'Quanto mais contexto (produto, prazo, integrações), mais objetiva será '
+        'nossa resposta — sem formulários intermináveis.'
+      ) }}
+
+      <div class="contact-layout">
+        <div class="contact-form-panel">
+          {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+          <ul class="flash-messages" role="status">
+            {% for category, message in messages %}
+            <li class="flash-messages__item flash-messages__item--{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+
+          <form method="post" class="contact-form" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="nome">{{ form.nome.label.text }}</label>
+                {{ form.nome(class='contact-form__input', id='nome', autocomplete='name', placeholder='Seu nome') }}
+                {% for error in form.nome.errors %}
+                <p class="contact-form__error">{{ error }}</p>
+                {% endfor %}
+              </div>
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="email">{{ form.email.label.text }}</label>
+                {{ form.email(class='contact-form__input', id='email', autocomplete='email', placeholder='voce@empresa.com') }}
+                {% for error in form.email.errors %}
+                <p class="contact-form__error">{{ error }}</p>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="assunto">{{ form.assunto.label.text }}</label>
+              {{ form.assunto(class='contact-form__input', id='assunto', placeholder='Ex.: Portal B2B · integração ERP') }}
+              {% for error in form.assunto.errors %}
+              <p class="contact-form__error">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <div class="contact-form__field">
+              <label class="contact-form__label" for="mensagem">{{ form.mensagem.label.text }}</label>
+              {{ form.mensagem(class='contact-form__textarea', id='mensagem', rows='6', placeholder='Contexto, prazo, stack atual e o que precisa sair do papel…') }}
+              {% for error in form.mensagem.errors %}
+              <p class="contact-form__error">{{ error }}</p>
+              {% endfor %}
+            </div>
+
+            <button type="submit" class="contact-form__submit hero__cta hero__cta--primary">
+              Enviar mensagem
+            </button>
+          </form>
+        </div>
+
+        <aside class="contact-aside" aria-label="Outros canais">
+          {{ contact_channel('✉', 'E-mail', 'jdevscommunity@protonmail.com', 'mailto:jdevscommunity@protonmail.com', 'Resposta em até 1 dia útil') }}
+          {{ contact_channel('◷', 'Horário', 'Seg–Sex · 9h–18h (BRT)', none, 'Calls sob agendamento') }}
+          {{ contact_channel('◎', 'Formato', 'Remoto · squads dedicados', none, 'Kick-off em até 2 semanas') }}
+
+          <ul class="contact-faq" aria-label="Perguntas frequentes">
+            <li class="contact-faq__item">
+              <p class="contact-faq__q">O que enviar no primeiro contato?</p>
+              <p class="contact-faq__a">Objetivo do produto, usuários, integrações críticas e prazo desejado — mesmo em tópicos.</p>
+            </li>
+            <li class="contact-faq__item">
+              <p class="contact-faq__q">Vocês assinam NDA?</p>
+              <p class="contact-faq__a">Sim. Enviamos modelo padrão ou revisamos o do seu jurídico antes do discovery.</p>
+            </li>
+            <li class="contact-faq__item">
+              <p class="contact-faq__q">Como funciona a proposta?</p>
+              <p class="contact-faq__a">Fases com entregáveis, squad sugerido e critérios de sucesso — sem horas “caixa preta”.</p>
+            </li>
+          </ul>
+        </aside>
+      </div>
+
+      <div class="page-section__foot">
+        {{ hero_actions([
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
+          {'url': url_for('equipe'), 'label': 'Conhecer equipe', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </section>
+
+  {% include 'components/footer.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% from 'components/header-nav-item.html' import nav_item %}
+<header class="site-header">
+  <div class="site-header__inner">
+    <a href="{{ url_for('index') }}" class="site-header__logo">
+      <img
+        src="{{ url_for('static', filename='img/logo-dark.png') }}"
+        alt="jDEVs"
+        class="site-header__logo-img site-header__logo-img--light"
+        width="168"
+        height="56"
+        decoding="async"
+      >
+      <img
+        src="{{ url_for('static', filename='img/logo-light.png') }}"
+        alt=""
+        class="site-header__logo-img site-header__logo-img--dark"
+        width="168"
+        height="56"
+        decoding="async"
+        aria-hidden="true"
+      >
+    </a>
+    <nav class="site-header__nav" aria-label="Principal">
+      {{ nav_item('index', 'Início') }}
+      {{ nav_item('projetos', 'Projetos', ['projetos', 'projeto_detalhe']) }}
+      {{ nav_item('equipe', 'Equipe') }}
+      {{ nav_item('contato', 'Contato') }}
+    </nav>
+  </div>
+</header>

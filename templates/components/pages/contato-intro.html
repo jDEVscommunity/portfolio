@@ -1,0 +1,53 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions %}
+
+<section class="page-intro page-intro--contato" aria-label="Contato">
+  <div class="page-intro__frame">
+    <div class="page-intro__mail-bg" aria-hidden="true">
+      <svg class="page-intro__mail-icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M4 6h16v12H4V6z"/>
+        <path d="m4 7 8 6 8-6"/>
+      </svg>
+    </div>
+
+    <div class="page-intro__layout page-intro__layout--contato">
+      <div class="page-intro__copy page-intro__copy--center">
+        {{ hero_eyebrow('Vamos conversar') }}
+        {{ hero_title_h2('Conte o contexto do seu produto') }}
+        {{ hero_lead(
+          'Respondemos com próximos passos claros — sem formulário longo na primeira '
+          'mensagem. Use o e-mail ou o formulário abaixo.'
+        ) }}
+
+        <a href="mailto:jdevscommunity@protonmail.com" class="page-intro__email">
+          jdevscommunity@protonmail.com
+        </a>
+
+        <ol class="page-intro__steps" aria-label="Fluxo inicial">
+          <li class="page-intro__step">
+            <span class="page-intro__step-num">01</span>
+            <span class="page-intro__step-label">Briefing</span>
+          </li>
+          <li class="page-intro__step" aria-hidden="true">
+            <span class="page-intro__step-connector"></span>
+          </li>
+          <li class="page-intro__step">
+            <span class="page-intro__step-num">02</span>
+            <span class="page-intro__step-label">Proposta</span>
+          </li>
+          <li class="page-intro__step" aria-hidden="true">
+            <span class="page-intro__step-connector"></span>
+          </li>
+          <li class="page-intro__step">
+            <span class="page-intro__step-num">03</span>
+            <span class="page-intro__step-label">Kick-off</span>
+          </li>
+        </ol>
+
+        {{ hero_actions([
+          {'url': '#mensagem', 'label': 'Ir ao formulário', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </div>
+</section>

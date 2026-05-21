@@ -1,0 +1,43 @@
+<div
+  class="hero-terminal is-phase-code"
+  id="hero-terminal"
+  role="region"
+  aria-label="Terminal — apresentação jDEVs"
+>
+  <div class="hero-terminal__chrome">
+    <div class="hero-terminal__dots" aria-hidden="true">
+      <span class="hero-terminal__dot hero-terminal__dot--close"></span>
+      <span class="hero-terminal__dot hero-terminal__dot--min"></span>
+      <span class="hero-terminal__dot hero-terminal__dot--max"></span>
+    </div>
+    <span class="hero-terminal__title" id="hero-terminal-filename">hero.animation</span>
+  </div>
+
+  <div class="hero-terminal__toolbar">
+    <div class="hero-terminal__langs" role="tablist" aria-label="Categoria de código">
+      <button type="button" class="hero-terminal__lang is-active" role="tab" aria-selected="true" data-view="animation">Anim</button>
+      <button type="button" class="hero-terminal__lang" role="tab" aria-selected="false" data-lang="html">HTML</button>
+      <button type="button" class="hero-terminal__lang" role="tab" aria-selected="false" data-lang="js" aria-label="JavaScript (Vanilla)">JS</button>
+      <button type="button" class="hero-terminal__lang" role="tab" aria-selected="false" data-lang="ts">TS</button>
+      <button type="button" class="hero-terminal__lang" role="tab" aria-selected="false" data-lang="python">Python</button>
+      <button type="button" class="hero-terminal__lang" role="tab" aria-selected="false" data-lang="php">PHP</button>
+    </div>
+    <div class="hero-terminal__variants" id="hero-terminal-variants" hidden>
+      <span class="hero-terminal__variants-label" id="hero-terminal-variant-label">Estilo</span>
+      <div class="hero-terminal__variant-btns" role="group" id="hero-terminal-variant-btns"></div>
+    </div>
+  </div>
+
+  <div class="hero-terminal__body">
+    <div class="hero-terminal__code-wrap" id="hero-terminal-code-wrap">
+      <pre class="hero-terminal__code" tabindex="0"><code id="hero-terminal-code" class="language-markup"></code></pre>
+    </div>
+    <div
+      class="hero-terminal__stage"
+      id="hero-terminal-stage"
+      aria-live="polite"
+      aria-atomic="true"
+      hidden
+    ></div>
+  </div>
+</div>

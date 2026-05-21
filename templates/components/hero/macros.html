@@ -1,0 +1,175 @@
+{% macro hero_eyebrow(text, primary=false) %}
+{% set eyebrow_len = text|length %}
+<p class="hero__eyebrow{% if primary %} hero__eyebrow--decorated{% endif %}{% if eyebrow_len > 30 %} hero__eyebrow--long{% elif eyebrow_len > 18 %} hero__eyebrow--medium{% else %} hero__eyebrow--short{% endif %}">{{ text }}</p>
+{% endmacro %}
+
+{% macro hero_title(lines, primary=false) %}
+<h1 class="hero__title{% if primary %} hero__title--primary{% endif %}">
+  {% for line in lines %}
+  <span class="hero__title-line">{{ line }}</span>
+  {% endfor %}
+</h1>
+{% endmacro %}
+
+{% macro hero_title_h2(text) %}
+<h2 class="hero__title">{{ text }}</h2>
+{% endmacro %}
+
+{% macro hero_lead(text, primary=false) %}
+<p class="hero__lead{% if primary %} hero__lead--primary{% endif %}">{{ text }}</p>
+{% endmacro %}
+
+{% macro hero_highlights(items) %}
+<ul class="hero__highlights" aria-label="Diferenciais">
+  {% for item in items %}
+  <li class="hero__highlight">
+    <span class="hero__highlight-value">{{ item.value }}</span>
+    <span class="hero__highlight-label">{{ item.label }}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro hero_actions(items) %}
+<div class="hero__actions">
+  {% for item in items %}
+  <a href="{{ item.url }}" class="hero__cta hero__cta--{{ item.variant }}">{{ item.label }}</a>
+  {% endfor %}
+</div>
+{% endmacro %}
+
+{% macro hero_footer(tags, aria_label='Tags', primary=false) %}
+<footer class="hero__footer{% if primary %} hero__footer--primary{% endif %}" aria-label="{{ aria_label }}">
+  {% for tag in tags %}
+  <span class="hero__footer-item">{{ tag }}</span>
+  {% endfor %}
+</footer>
+{% endmacro %}
+
+{% macro hero_visual() %}
+<figure class="hero__visual">
+  <img
+    class="hero__visual-img hero__visual-img--light"
+    src="{{ url_for('static', filename='img/3d-light.png') }}"
+    alt=""
+    width="480"
+    height="480"
+    decoding="async"
+  >
+  <img
+    class="hero__visual-img hero__visual-img--dark"
+    src="{{ url_for('static', filename='img/3d-dark.png') }}"
+    alt=""
+    width="480"
+    height="480"
+    decoding="async"
+  >
+</figure>
+{% endmacro %}
+
+{% macro hero_capabilities(items) %}
+<ul class="hero__capabilities">
+  {% for item in items %}
+  <li class="hero__capability">
+    <span class="hero__capability-title">{{ item.title }}</span>
+    <span class="hero__capability-desc">{{ item.desc }}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro hero_testimonial_cards(items) %}
+<ul class="hero__testimonials" role="list">
+  {% for item in items %}
+  <li class="hero__testimonial" role="listitem">
+    {% if item.scope_label %}
+    <span class="hero__testimonial-scope hero__testimonial-scope--{{ item.scope }}">{{ item.scope_label }}</span>
+    {% endif %}
+    <blockquote class="hero__testimonial-quote">
+      <p>{{ item.quote }}</p>
+    </blockquote>
+    <footer class="hero__testimonial-author">
+      <cite class="hero__testimonial-name">{{ item.company }}</cite>
+      {% if item.author or item.role %}
+      <span class="hero__testimonial-meta">
+        {%- if item.author %}{{ item.author }}{% endif -%}
+        {%- if item.author and item.role %} · {% endif -%}
+        {%- if item.role %}{{ item.role }}{% endif -%}
+      </span>
+      {% endif %}
+    </footer>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro hero_service_cards(items) %}
+<ul class="hero__cards" role="list">
+  {% for item in items %}
+  <li class="hero__card" role="listitem">
+    <span class="hero__card-index" aria-hidden="true">{{ '%02d'|format(loop.index) }}</span>
+    <h3 class="hero__card-title">{{ item.title }}</h3>
+    <p class="hero__card-desc">{{ item.desc }}</p>
+    {% if item.tags %}
+    <ul class="hero__card-tags" aria-label="Tecnologias e foco">
+      {% for tag in item.tags %}
+      <li class="hero__card-tag">{{ tag }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{% macro hero_tech_carousel(items) %}
+<div class="hero-tech-carousel" aria-label="Tecnologias utilizadas">
+  <div class="hero-tech-carousel__fade hero-tech-carousel__fade--start" aria-hidden="true"></div>
+  <div class="hero-tech-carousel__viewport">
+    <ul class="hero-tech-carousel__track" role="list">
+      {% for tech in items %}
+      <li class="hero-tech-carousel__item" role="listitem">
+        <img
+          class="hero-tech-carousel__logo"
+          src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
+          alt="{{ tech.name }}"
+          width="80"
+          height="80"
+          loading="lazy"
+          decoding="async"
+        >
+        <span class="hero-tech-carousel__label">{{ tech.name }}</span>
+      </li>
+      {% endfor %}
+      {% for tech in items %}
+      <li class="hero-tech-carousel__item" role="listitem" aria-hidden="true">
+        <img
+          class="hero-tech-carousel__logo"
+          src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
+          alt=""
+          width="80"
+          height="80"
+          loading="lazy"
+          decoding="async"
+        >
+        <span class="hero-tech-carousel__label">{{ tech.name }}</span>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="hero-tech-carousel__fade hero-tech-carousel__fade--end" aria-hidden="true"></div>
+</div>
+{% endmacro %}
+
+{% macro hero_float_scene() %}
+<div class="hero__scene" id="hero-scene" aria-hidden="true">
+  <div
+    class="hero__floats"
+    id="hero-floats"
+    data-chip-light-logo="{{ url_for('static', filename='img/chip-light-logo.png') }}"
+    data-chip-light-empty="{{ url_for('static', filename='img/chip-light-empty.png') }}"
+    data-chip-dark-logo="{{ url_for('static', filename='img/chip-dark-logo.png') }}"
+    data-chip-dark-empty="{{ url_for('static', filename='img/chip-dark-empty.png') }}"
+  ></div>
+</div>
+{% endmacro %}

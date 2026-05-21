@@ -1,0 +1,26 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions, hero_service_cards %}
+
+<section class="hero hero--tertiary" aria-label="Entregas">
+  <div class="hero__frame hero__frame--tertiary">
+    <div class="hero__layout hero__layout--tertiary">
+      <header class="hero__tertiary-head">
+        {{ hero_eyebrow('Entregas') }}
+        {{ hero_title_h2('O que construímos com o seu time') }}
+        {{ hero_lead(
+          'Combinamos produto, design e engenharia para entregar software que '
+          'escala com o negócio — com escopo claro, código documentado e '
+          'evolução contínua após o lançamento.'
+        ) }}
+      </header>
+
+      {{ hero_service_cards(entregas) }}
+
+      <div class="hero__tertiary-foot">
+        {{ hero_actions([
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
+          {'url': url_for('contato'), 'label': 'Falar com a jDEVs', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </div>
+</section>

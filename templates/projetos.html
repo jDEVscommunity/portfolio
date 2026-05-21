@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
+{% from 'components/pages/macros.html' import page_section_head, project_card, process_step %}
+
+{% block title %}Projetos{% endblock %}
+
+{% block extra_css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% endblock %}
+
+{% block hero %}
+<section class="page-hero page-hero--projetos" aria-label="Projetos">
+  <div class="page-hero__frame">
+    <div class="page-hero__layout">
+      <div class="page-hero__copy">
+        {{ hero_eyebrow('Portfólio · Cases reais', true) }}
+        {{ hero_title(['Projetos que', 'saem do slide.']) }}
+        {{ hero_lead(
+          'Plataformas, integrações e produtos digitais entregues com escopo claro, '
+          'código documentado e evolução após o go-live — com o mesmo rigor da landing.'
+        ) }}
+        {{ hero_highlights([
+          {'value': projetos|length|string, 'label': 'cases no portfólio'},
+          {'value': 'B2B', 'label': 'foco em produto'},
+          {'value': '100%', 'label': 'documentação técnica'},
+        ]) }}
+        {{ hero_actions([
+          {'url': '#cases', 'label': 'Explorar cases', 'variant': 'primary'},
+          {'url': url_for('contato'), 'label': 'Novo projeto', 'variant': 'secondary'},
+        ]) }}
+        {{ hero_footer(
+          ['Plataformas', 'APIs', 'SaaS', 'Modernização'],
+          'Categorias'
+        ) }}
+      </div>
+      <div class="page-hero__stage" aria-hidden="true">
+        <div class="page-hero__decor">
+          <div class="page-hero__decor-ring"></div>
+          <div class="page-hero__decor-ring page-hero__decor-ring--inner"></div>
+          <div class="page-hero__decor-core">jDEVs</div>
+          <span class="page-hero__decor-chip page-hero__decor-chip--1">React</span>
+          <span class="page-hero__decor-chip page-hero__decor-chip--2">APIs</span>
+          <span class="page-hero__decor-chip page-hero__decor-chip--3">PostgreSQL</span>
+          <span class="page-hero__decor-chip page-hero__decor-chip--4">Go-live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+  <section class="page-section" id="cases" aria-label="Lista de projetos">
+    <div class="page-section__frame">
+      {{ page_section_head(
+        'Cases',
+        'O que já colocamos em produção',
+        'Cada projeto combina produto, design e engenharia — com métricas de resultado '
+        'e stack documentada para o time continuar evoluindo.'
+      ) }}
+
+      <div class="project-filters" role="group" aria-label="Filtrar por categoria">
+        <button type="button" class="project-filters__btn project-filters__btn--active" data-filter="all" aria-pressed="true">
+          Todos
+        </button>
+        {% for cat in categorias %}
+        <button type="button" class="project-filters__btn" data-filter="{{ cat }}" aria-pressed="false">
+          {{ cat }}
+        </button>
+        {% endfor %}
+      </div>
+
+      <div class="project-grid" id="project-grid" role="list">
+        {% for projeto in projetos %}
+        {{ project_card(projeto, loop.first, loop.index) }}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section page-section--alt" aria-label="Como entregamos">
+    <div class="page-section__frame page-section__frame--grid-bg">
+      {{ page_section_head(
+        'Processo',
+        'Do discovery ao deploy sem surpresas',
+        'Mesmo fluxo que você vê na página inicial — enxuto, previsível e com '
+        'releases que o negócio consegue acompanhar.'
+      ) }}
+
+      <ol class="page-process" role="list">
+        {{ process_step(1, 'Discovery', 'Escopo, riscos e integrações mapeados em sprint zero — com critérios de sucesso explícitos.') }}
+        {{ process_step(2, 'Design', 'Protótipo navegável e sistema visual alinhado ao produto, não só à marca.') }}
+        {{ process_step(3, 'Build', 'Releases frequentes, PRs revisados e ambiente de staging espelhando produção.') }}
+        {{ process_step(4, 'Operação', 'Monitoramento, runbooks e backlog pós go-live no mesmo squad.') }}
+      </ol>
+
+      <div class="page-section__foot">
+        {{ hero_actions([
+          {'url': url_for('contato'), 'label': 'Contar seu desafio', 'variant': 'primary'},
+          {'url': url_for('equipe'), 'label': 'Conhecer o time', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section page-cta-band" aria-label="Chamada para ação">
+    <div class="page-section__frame">
+      <div class="page-cta-band__inner">
+        <div>
+          <h2 class="page-cta-band__title">Tem um produto ou integração na fila?</h2>
+          <p class="page-cta-band__text">
+            Envie contexto, prazo e restrições — respondemos com próximos passos e um plano de entrega enxuto.
+          </p>
+        </div>
+        {{ hero_actions([
+          {'url': url_for('contato'), 'label': 'Agendar conversa', 'variant': 'primary'},
+        ]) }}
+      </div>
+    </div>
+  </section>
+
+  {% include 'components/footer.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/pages-filter.js') }}" defer></script>
+{% endblock %}

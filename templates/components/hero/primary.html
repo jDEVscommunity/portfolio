@@ -1,0 +1,41 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
+
+<section class="hero hero--primary" aria-label="Apresentação">
+  <div class="hero__frame hero__frame--primary">
+    <div class="hero__layout hero__layout--primary">
+      <div class="hero__col hero__col--source" id="hero-terminal-source" aria-hidden="true">
+        <div class="hero__inner hero__inner--primary">
+          {{ hero_eyebrow('jDEVs · Desenvolvimento de software', true) }}
+          {{ hero_title(['Software pensado', 'com precisão.'], true) }}
+          {{ hero_lead(
+            'Produtos digitais B2B e plataformas sob medida — produto, design e '
+            'engenharia no mesmo time, da ideia à produção.',
+            true
+          ) }}
+          {{ hero_highlights([
+            {'value': '+40', 'label': 'projetos entregues'},
+            {'value': '2–8', 'label': 'semanas por release'},
+            {'value': '100%', 'label': 'código documentado'},
+          ]) }}
+        </div>
+      </div>
+
+      <div class="hero__col hero__col--center">
+        {% include 'components/hero/terminal.html' %}
+      </div>
+
+      <div class="hero__bottom hero__bottom--primary">
+        {{ hero_actions([
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
+          {'url': url_for('contato'), 'label': 'Falar conosco', 'variant': 'secondary'},
+        ]) }}
+        {{ hero_footer(
+          ['Aplicações web', 'APIs e integrações', 'Produtos digitais'],
+          'Áreas de atuação',
+          true
+        ) }}
+        <p class="hero__scroll-hint" aria-hidden="true">Role para explorar</p>
+      </div>
+    </div>
+  </div>
+</section>

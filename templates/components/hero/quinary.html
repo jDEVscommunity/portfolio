@@ -1,0 +1,32 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions %}
+
+<section class="hero hero--quinary" aria-label="Pronto para expandir">
+  <div class="hero__frame hero__frame--quinary">
+    <div class="hero__quinary-email-bg" aria-hidden="true">
+      <svg class="hero__quinary-email-bg-icon" viewBox="0 0 24 24" focusable="false">
+        <path d="M4 6h16v12H4V6z"/>
+        <path d="m4 7 8 6 8-6"/>
+      </svg>
+    </div>
+
+    <div class="hero__layout hero__layout--quinary">
+      <div class="hero__quinary-inner">
+        {{ hero_eyebrow('Próximo passo') }}
+        {{ hero_title_h2('Pronto para expandir pra internet?') }}
+        {{ hero_lead(
+          'Leve seu produto, plataforma ou operação para a web com um time que '
+          'entrega escopo claro, código documentado e evolução após o go-live.'
+        ) }}
+
+        <a href="mailto:jdevscommunity@protonmail.com" class="hero__quinary-email-link">
+          jdevscommunity@protonmail.com
+        </a>
+
+        {{ hero_actions([
+          {'url': url_for('contato'), 'label': 'Agendar conversa', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </div>
+</section>

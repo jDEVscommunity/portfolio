@@ -1,0 +1,42 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions %}
+
+<section class="page-intro page-intro--equipe" aria-label="Equipe">
+  <div class="page-intro__frame">
+    <div class="page-intro__layout page-intro__layout--equipe">
+      <div class="page-intro__copy">
+        {{ hero_eyebrow('Pessoas · jDEVs') }}
+        {{ hero_title_h2('Dois fundadores. Um squad por projeto.') }}
+        {{ hero_lead(
+          'Lucas e Davi assumem produto e engenharia no mesmo fluxo — discovery, '
+          'build e operação, sem repassar contexto entre times.'
+        ) }}
+        {{ hero_actions([
+          {'url': '#time', 'label': 'Ver perfis', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Ver cases', 'variant': 'secondary'},
+        ]) }}
+      </div>
+
+      <div class="page-intro__roster" role="list" aria-label="Fundadores">
+        <div class="page-intro__roster-line" aria-hidden="true"></div>
+        {% for membro in equipe %}
+        <article class="page-intro__roster-card" role="listitem">
+          <div class="page-intro__roster-avatar" aria-hidden="true">
+            <span>{{ membro.inicial }}</span>
+          </div>
+          <div class="page-intro__roster-body">
+            <h3 class="page-intro__roster-nome">{{ membro.nome }}</h3>
+            <p class="page-intro__roster-cargo">{{ membro.cargo }}</p>
+            {% if membro.foco %}
+            <ul class="page-intro__roster-foco">
+              {% for item in membro.foco[:2] %}
+              <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

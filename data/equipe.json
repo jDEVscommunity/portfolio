@@ -1,0 +1,20 @@
+[
+  {
+    "nome": "Lucas Gabriel",
+    "cargo": "Co-fundador · Engenharia",
+    "bio": "Produto e código ponta a ponta — da arquitetura ao deploy, com foco em entregas previsíveis e software documentado.",
+    "inicial": "LG",
+    "foco": ["Full stack", "React", "Python"],
+    "linkedin": "https://linkedin.com",
+    "github": "https://github.com"
+  },
+  {
+    "nome": "Davi Fontana",
+    "cargo": "Co-fundador · Engenharia",
+    "bio": "APIs, integrações e operação em produção — construindo plataformas B2B que o time do cliente consegue evoluir.",
+    "inicial": "DF",
+    "foco": ["Backend", "APIs", "PostgreSQL"],
+    "linkedin": "https://linkedin.com",
+    "github": "https://github.com"
+  }
+]

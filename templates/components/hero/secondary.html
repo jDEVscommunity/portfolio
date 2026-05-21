@@ -1,0 +1,31 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions, hero_footer, hero_float_scene %}
+
+<section class="hero hero--secondary" aria-label="Como trabalhamos">
+  <div class="hero__frame hero__frame--secondary">
+    <div class="hero__layout hero__layout--secondary">
+      <div class="hero__col hero__col--main">
+        <div class="hero__inner hero__inner--secondary">
+          {{ hero_eyebrow('Como trabalhamos') }}
+          {{ hero_title_h2('Produto, engenharia e entrega no mesmo fluxo') }}
+          {{ hero_lead(
+            'Atuamos como extensão do seu time — com discovery enxuto, protótipos '
+            'validáveis e releases frequentes, para reduzir risco e acelerar o que '
+            'importa no roadmap.'
+          ) }}
+          {{ hero_actions([
+            {'url': url_for('projetos'), 'label': 'Ver o processo', 'variant': 'primary'},
+            {'url': url_for('contato'), 'label': 'Agendar conversa', 'variant': 'secondary'},
+          ]) }}
+          {{ hero_footer(
+            ['Discovery & escopo', 'Design & prototipação', 'Build & operação'],
+            'Etapas do serviço'
+          ) }}
+        </div>
+      </div>
+
+      <div class="hero__col hero__col--stage">
+        {{ hero_float_scene() }}
+      </div>
+    </div>
+  </div>
+</section>

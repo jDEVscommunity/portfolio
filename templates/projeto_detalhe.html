@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_actions %}
+{% from 'components/pages/macros.html' import page_section_head, project_card %}
+
+{% block title %}{{ projeto.titulo }}{% endblock %}
+
+{% block extra_css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pages.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+{% endblock %}
+
+{% block hero %}
+<section class="page-hero page-hero--detalhe project-detail-hero" aria-label="{{ projeto.titulo }}">
+  <div class="page-hero__frame">
+    <div class="page-hero__layout">
+      <div class="page-hero__copy">
+        {{ hero_eyebrow(projeto.categoria ~ ' · ' ~ projeto.ano, true) }}
+        {{ hero_title([projeto.titulo]) }}
+        {{ hero_lead(projeto.subtitulo or projeto.resumo) }}
+        <dl class="project-detail-meta">
+          <div class="project-detail-meta__item"><strong>Cliente</strong> {{ projeto.cliente }}</div>
+          {% if projeto.tags %}
+          <div class="project-detail-meta__item"><strong>Stack</strong> {{ projeto.tags|join(' · ') }}</div>
+          {% endif %}
+        </dl>
+        {{ hero_actions([
+          {'url': url_for('contato'), 'label': 'Projeto similar', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Voltar ao portfólio', 'variant': 'secondary'},
+        ]) }}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<div class="page">
+  <section class="page-section" aria-label="Detalhes do case">
+    <div class="page-section__frame">
+      <div class="project-detail-body">
+        <div class="project-detail__main">
+          <h2 class="visually-hidden">Descrição</h2>
+          <div class="project-detail__prose">
+            {% for paragrafo in (projeto.descricao or projeto.resumo).split('\n\n') %}
+            <p>{{ paragrafo }}</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <aside class="project-detail__sidebar">
+          {% if projeto.resultados %}
+          <div>
+            <h3 class="page-section__head hero__title" style="font-size:1.1rem;margin:0 0 0.75rem">Resultados</h3>
+            <ul class="project-detail__stats">
+              {% for r in projeto.resultados %}
+              <li class="project-detail__stat">
+                <span class="project-detail__stat-value">{{ r.valor }}</span>
+                <span class="project-detail__stat-label">{{ r.label }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+
+          {% if projeto.tecnologias %}
+          <div>
+            <h3 class="page-section__head hero__title" style="font-size:1.1rem;margin:0 0 0.75rem">Tecnologias</h3>
+            <div class="project-detail__tech">
+              {% for slug in projeto.tecnologias %}
+              <div class="project-detail__tech-item">
+                <img
+                  src="{{ url_for('static', filename='img/tech/' ~ slug ~ '.svg') }}"
+                  alt=""
+                  width="32"
+                  height="32"
+                  loading="lazy"
+                  decoding="async"
+                >
+                <span>{{ slug }}</span>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+          {% endif %}
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  {% if relacionados %}
+  <section class="page-section page-section--alt" aria-label="Outros projetos">
+    <div class="page-section__frame">
+      {{ page_section_head('Mais cases', 'Outros projetos do portfólio') }}
+      <div class="project-related" role="list">
+        {% for rel in relacionados %}
+        {{ project_card(rel, false, loop.index) }}
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="page-section page-cta-band" aria-label="Contato">
+    <div class="page-section__frame">
+      <div class="page-cta-band__inner">
+        <div>
+          <h2 class="page-cta-band__title">Quer um resultado parecido?</h2>
+          <p class="page-cta-band__text">Conte seu cenário — montamos squad, fases e cronograma como neste case.</p>
+        </div>
+        {{ hero_actions([
+          {'url': url_for('contato'), 'label': 'Falar com a jDEVs', 'variant': 'primary'},
+        ]) }}
+      </div>
+    </div>
+  </section>
+
+  {% include 'components/footer.html' %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
+{% endblock %}

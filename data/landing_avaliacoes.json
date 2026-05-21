@@ -1,0 +1,20 @@
+[
+  {
+    "quote": "Precisávamos de uma aplicação objetiva, sem camadas desnecessárias. A jDEVs entregou escopo enxuto, poucas integrações e go-live rápido — exatamente o que o Grupo L&N precisava.",
+    "company": "Grupo L&N",
+    "scope": "simple",
+    "scope_label": "Entrega simples"
+  },
+  {
+    "quote": "A solução da Macro foi pensada de forma direta: fluxos claros, stack enxuta e manutenção simples. O time manteve o foco no essencial e colocou tudo no ar sem complicar a operação.",
+    "company": "Macro",
+    "scope": "simple",
+    "scope_label": "Entrega simples"
+  },
+  {
+    "quote": "O Cadastro Rural exigiu regras de negócio densas, múltiplas integrações e evolução contínua. A jDEVs estruturou a arquitetura para suportar essa complexidade com documentação e releases previsíveis.",
+    "company": "Cadastro Rural",
+    "scope": "complex",
+    "scope_label": "Entrega complexa"
+  }
+]

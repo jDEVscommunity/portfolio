@@ -1,0 +1,70 @@
+<footer class="site-footer" aria-label="Rodapé">
+  <div class="site-footer__bounds">
+    <div class="site-footer__inner">
+      <div class="site-footer__hero">
+        <a href="{{ url_for('index') }}" class="site-footer__logo">
+          <img
+            src="{{ url_for('static', filename='img/logo-dark.png') }}"
+            alt="jDEVs"
+            class="site-footer__logo-img site-footer__logo-img--light"
+            width="168"
+            height="56"
+            decoding="async"
+          >
+          <img
+            src="{{ url_for('static', filename='img/logo-light.png') }}"
+            alt=""
+            class="site-footer__logo-img site-footer__logo-img--dark"
+            width="168"
+            height="56"
+            decoding="async"
+            aria-hidden="true"
+          >
+        </a>
+
+        <div class="site-footer__brand-copy">
+          <p class="site-footer__slogan" aria-label="A equipe que faz acontecer">
+            <span class="site-footer__slogan-line">A equipe que</span>
+            <span class="site-footer__slogan-line site-footer__slogan-line--accent">faz acontecer</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="site-footer__grid">
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading">Navegação</h2>
+          <ul class="site-footer__links">
+            <li><a href="{{ url_for('index') }}">Início</a></li>
+            <li><a href="{{ url_for('projetos') }}">Projetos</a></li>
+            <li><a href="{{ url_for('equipe') }}">Equipe</a></li>
+            <li><a href="{{ url_for('contato') }}">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading">Entregas</h2>
+          <ul class="site-footer__links">
+            <li><span>Plataformas web</span></li>
+            <li><span>APIs &amp; integrações</span></li>
+            <li><span>Produto do zero</span></li>
+            <li><span>Operação contínua</span></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col site-footer__col--contact">
+          <h2 class="site-footer__heading">Vamos conversar</h2>
+          <p class="site-footer__contact-text">
+            Conte o contexto do seu produto. Respondemos com próximos passos claros
+            e um plano de entrega enxuto.
+          </p>
+          <a href="{{ url_for('contato') }}" class="site-footer__cta">Agendar conversa</a>
+        </div>
+      </div>
+
+      <div class="site-footer__bar">
+        <p class="site-footer__copy">&copy; {{ current_year }} jDEVs. Todos os direitos reservados.</p>
+        <p class="site-footer__meta">Produto · Engenharia · Entrega</p>
+      </div>
+    </div>
+  </div>
+</footer>

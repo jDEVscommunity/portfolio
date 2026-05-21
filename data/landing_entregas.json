@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Plataformas web",
+    "desc": "Portais, painéis e produtos SaaS com fluxos complexos, permissões e integrações de ponta a ponta.",
+    "tags": ["React", "APIs", "PostgreSQL"]
+  },
+  {
+    "title": "APIs & integrações",
+    "desc": "Conectamos ERPs, pagamentos e sistemas legados com contratos claros, filas e observabilidade.",
+    "tags": ["REST", "Webhooks", "Filas"]
+  },
+  {
+    "title": "Produto do zero",
+    "desc": "Discovery enxuto, protótipo validável e releases frequentes até o go-live com o mesmo squad.",
+    "tags": ["MVP", "UX", "Go-live"]
+  }
+]
