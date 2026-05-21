@@ -43,8 +43,10 @@ portfolio/
 
 ### Instalação
 
+**Demo (produção):** [https://port-pi-teal.vercel.app](https://port-pi-teal.vercel.app)
+
 ```bash
-git clone https://github.com/SEU_USUARIO/portfolio.git
+git clone https://github.com/dav1skk/portfolio.git
 cd portfolio
 python -m venv .venv
 
@@ -84,11 +86,26 @@ Na Vercel, configure em **Project → Settings → Environment Variables**.
 
 > O formulário de contato depende de SMTP válido. Sem essas variáveis, as páginas públicas funcionam, mas o envio de e-mail falhará.
 
+## Publicar no GitHub (`portfolio`)
+
+Com o [GitHub CLI](https://cli.github.com/) autenticado (`gh auth login`):
+
+```bash
+gh repo create portfolio --public --source=. --remote=origin --push
+```
+
+Ou crie o repositório **portfolio** em [github.com/new](https://github.com/new) e depois:
+
+```bash
+git remote add origin https://github.com/dav1skk/portfolio.git
+git push -u origin main
+```
+
 ## Deploy na Vercel
 
 ### Opção A — GitHub (recomendado)
 
-1. Faça push deste repositório para `github.com/SEU_USUARIO/portfolio`.
+1. Faça push deste repositório para `github.com/dav1skk/portfolio`.
 2. Em [vercel.com/new](https://vercel.com/new), importe o repositório **portfolio**.
 3. A Vercel detecta Flask via `app.py` e `requirements.txt`.
 4. Adicione as variáveis de ambiente de produção.
