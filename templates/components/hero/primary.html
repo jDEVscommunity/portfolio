@@ -1,4 +1,4 @@
-{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_lead, hero_highlights, hero_actions, hero_footer %}
 
 <section class="hero hero--primary" aria-label="Apresentação">
   <div class="hero__frame hero__frame--primary">
@@ -6,7 +6,10 @@
       <div class="hero__col hero__col--source" id="hero-terminal-source" aria-hidden="true">
         <div class="hero__inner hero__inner--primary">
           {{ hero_eyebrow('jDEVs · Desenvolvimento de software', true) }}
-          {{ hero_title(['Software pensado', 'com precisão.'], true, emphasis='precisão') }}
+          <h1 class="hero__title hero__title--primary" data-title-emphasis="precisão">
+            <span class="hero__title-line">Software pensado com</span>
+            <span class="hero__title-line">precisão<span class="hero__title-mark">.</span></span>
+          </h1>
           {{ hero_lead(
             'Produtos digitais B2B e plataformas sob medida — produto, design e '
             'engenharia no mesmo time, da ideia à produção.',
@@ -26,8 +29,8 @@
 
       <div class="hero__bottom hero__bottom--primary">
         {{ hero_actions([
-          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
-          {'url': url_for('contato'), 'label': 'Falar conosco', 'variant': 'secondary'},
+          {'url': url_for('projetos.projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
+          {'url': url_for('contato.contato'), 'label': 'Falar conosco', 'variant': 'secondary'},
         ]) }}
         {{ hero_footer(
           ['Aplicações web', 'APIs e integrações', 'Produtos digitais'],

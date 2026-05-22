@@ -1,10 +1,10 @@
 {% macro nav_item(endpoint, label, active_endpoints=none) %}
 {% set endpoints = active_endpoints or [endpoint] %}
-{% set is_active = request.endpoint in endpoints %}
-<div class="site-header__nav-item{% if is_active %} site-header__nav-item--active{% endif %}">
+{% set is_active = active_route in endpoints %}
+<div class="site-header__nav-item">
   <a
     href="{{ url_for(endpoint) }}"
-    class="site-header__nav-link"
+    class="site-header__nav-link{% if is_active %} nav-active{% endif %}"
     {% if is_active %}aria-current="page"{% endif %}
   >
     <span class="site-header__nav-label">{{ label }}</span>

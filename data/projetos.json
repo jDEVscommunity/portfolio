@@ -9,6 +9,24 @@
     "cliente": "Grupo L&N",
     "resumo": "Produto digital direto ao ponto — poucas integrações, fluxos essenciais e colocação em produção sem camadas desnecessárias.",
     "descricao": "O Grupo L&N precisava sair do operacional manual com uma aplicação clara e mantível. Priorizamos o que destravava o negócio: escopo enxuto, integrações só onde faziam diferença e entregas frequentes até o go-live.\n\nA solução ficou objetiva de operar e evoluir — alinhada ao que o time já fazia no dia a dia, sem reinventar processos por software.",
+    "problema": "Pedidos, estoque e faturamento circulavam em planilhas e mensagens. Cada área tinha sua versão dos dados; conciliar números consumia horas e atrasava decisões de compra e expedição.",
+    "solucao": "Mapeamos três fluxos críticos — pedido, separação e faturamento — e entregamos uma aplicação web única com papéis claros. Integrações ficaram restritas ao ERP já usado pelo cliente; o restante foi resolvido com regras simples no backend e telas enxutas para operação.",
+    "decisoes_tecnicas": [
+      "React no front com formulários guiados por etapa para reduzir erro de digitação",
+      "API Python enxuta com contratos documentados em OpenAPI para o time interno",
+      "PostgreSQL com modelagem alinhada aos relatórios que o negócio já confiava"
+    ],
+    "metricas": [
+      { "valor": "4 sem.", "label": "do briefing ao go-live" },
+      { "valor": "−60%", "label": "tempo em conciliação manual" },
+      { "valor": "1", "label": "fonte de verdade para pedidos" }
+    ],
+    "quote": {
+      "texto": "Saímos das planilhas sem parar a operação. O time adotou no primeiro mês porque o fluxo espelha o que já fazíamos — só que confiável.",
+      "autor": "Gerente de operações",
+      "empresa": "Grupo L&N"
+    },
+    "timeline": "4 semanas — do briefing ao go-live",
     "resultados": [
       { "valor": "Go-live", "label": "rápido e previsível" },
       { "valor": "Enxuto", "label": "escopo sem excesso" },
@@ -28,6 +46,24 @@
     "cliente": "Macro",
     "resumo": "Solução pensada de forma direta — foco no essencial para colocar tudo no ar sem complicar a operação.",
     "descricao": "Na Macro, o desafio era colocar software em produção sem sobrecarregar quem opera o produto. Desenhamos fluxos legíveis, stack enxuta e contratos simples entre front e API.\n\nO time manteve o foco no essencial: releases curtas, manutenção acessível e evolução após o lançamento sem refatorações desnecessárias.",
+    "problema": "O produto existia em protótipo, mas cada release exigia alinhamento longo entre design, back e operação. Telas inconsistentes e endpoints sem contrato fixo geravam retrabalho a cada sprint.",
+    "solucao": "Consolidamos o fluxo principal em um mapa único e implementamos front e API em paralelo, com tipagem compartilhada e checklist de release. Priorizamos observabilidade básica (logs estruturados e health checks) antes de features secundárias.",
+    "decisoes_tecnicas": [
+      "TypeScript ponta a ponta para contratos estáveis entre UI e API",
+      "Node.js com camadas finas (rotas → serviços → repositórios) para onboarding rápido",
+      "Design system mínimo no React para manter consistência sem travar entregas"
+    ],
+    "metricas": [
+      { "valor": "5 sem.", "label": "MVP em produção" },
+      { "valor": "2×", "label": "velocidade de release após go-live" },
+      { "valor": "0", "label": "incidentes críticos no lançamento" }
+    ],
+    "quote": {
+      "texto": "Fluxos claros e stack enxuta — colocamos tudo no ar sem complicar quem opera. Hoje evoluímos feature a feature sem medo de quebrar o core.",
+      "autor": "Head de produto",
+      "empresa": "Macro"
+    },
+    "timeline": "5 semanas — MVP em produção",
     "resultados": [
       { "valor": "Stack", "label": "enxuta e mantível" },
       { "valor": "Fluxos", "label": "claros para operação" },
@@ -47,6 +83,24 @@
     "cliente": "Cadastro Rural",
     "resumo": "Plataforma com regras de negócio complexas, integrações de ponta a ponta e arquitetura preparada para releases previsíveis.",
     "descricao": "O Cadastro Rural exigia muito mais que um CRUD: validações cruzadas, integrações com sistemas parceiros e evolução constante de regras regulatórias e operacionais.\n\nEstruturamos domínios, contratos de API e documentação para suportar a complexidade — com squad dedicado, filas onde necessário e roadmap de releases alinhado ao negócio.",
+    "problema": "O cliente processava cadastros rurais manualmente em planilhas compartilhadas. Validações cruzadas entre múltiplos órgãos eram feitas por e-mail, gerando retrabalho constante e risco regulatório a cada ciclo.",
+    "solucao": "Estruturamos a plataforma em domínios isolados com contratos de API explícitos entre eles. Implementamos filas para as integrações com sistemas parceiros, garantindo que falhas externas não travassem o fluxo principal. Cada release foi precedido de staging espelhando produção.",
+    "decisoes_tecnicas": [
+      "PostgreSQL com schemas separados por domínio para isolar regras de negócio",
+      "Filas (Redis + Laravel Queues) para integrações com tolerância a falha",
+      "ADRs documentando cada decisão arquitetural para o time do cliente"
+    ],
+    "metricas": [
+      { "valor": "80%", "label": "redução no tempo de processamento" },
+      { "valor": "3×", "label": "mais cadastros processados por dia" },
+      { "valor": "zero", "label": "retrabalho por erro de validação" }
+    ],
+    "quote": {
+      "texto": "A arquitetura suportou a complexidade desde o primeiro sprint. Releases previsíveis e zero surpresas.",
+      "autor": "CTO",
+      "empresa": "Cadastro Rural"
+    },
+    "timeline": "6 semanas — do discovery ao go-live",
     "resultados": [
       { "valor": "Multi", "label": "integrações ativas" },
       { "valor": "Releases", "label": "previsíveis" },

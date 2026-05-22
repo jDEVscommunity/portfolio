@@ -24,9 +24,16 @@ Site institucional da **jDEVs** — portfólio de projetos, equipe e contato. Co
 
 ```
 portfolio/
-├── app.py              # Rotas Flask
+├── app.py              # Entry point Flask (blueprints, hooks, /health)
 ├── config.py           # Configuração (env vars)
+├── extensions.py       # Extensões Flask (Mail)
 ├── forms.py            # Formulário de contato
+├── helpers.py          # carregar_json, sitemap, etc.
+├── routes/             # Blueprints por domínio
+│   ├── main.py         # /, /equipe
+│   ├── projetos.py     # /projetos
+│   ├── contato.py      # /contato
+│   └── sistema.py      # robots, sitemap, favicon, CSP report
 ├── data/               # JSON (projetos, equipe, landing)
 ├── static/             # CSS, JS, imagens
 ├── templates/          # HTML Jinja2

@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="{% block twitter_title %}jDEVs{% endblock %}">
   <meta name="twitter:description" content="{% block twitter_description %}Desenvolvimento de software sob medida — jDEVs{% endblock %}">
   <meta name="twitter:image" content="{{ og_image }}">
-  <link rel="icon" href="{{ url_for('favicon') }}" sizes="any">
+  <link rel="icon" href="{{ url_for('sistema.favicon') }}" sizes="any">
   <link rel="icon" data-favicon type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
   <link rel="icon" data-favicon type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
   <link rel="apple-touch-icon" data-favicon sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
@@ -69,9 +69,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/badge.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/elevation.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/tooltip.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom-cursor.css') }}">
   {% block extra_css %}{% endblock %}
 </head>
-<body class="app{% if request.endpoint and request.endpoint != 'index' %} app--inner-page{% endif %}">
+<body class="app{% if request.endpoint and request.endpoint != 'main.index' %} app--inner-page{% endif %}">
+  {% include "partials/tech_sprite.html" %}
   {% include 'components/header.html' %}
 
   <main class="page-container">
@@ -94,11 +96,14 @@
   </button>
   {% endcall %}
 
+  <div id="custom-cursor" aria-hidden="true">Ver case →</div>
+
   <script src="{{ url_for('static', filename='js/tooltip.js') }}"></script>
   <script src="{{ url_for('static', filename='js/header-nav.js') }}"></script>
   <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
   <script src="{{ url_for('static', filename='js/hero-count-up.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/page-scroll.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/custom-cursor.js') }}" defer></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>

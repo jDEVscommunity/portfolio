@@ -1,4 +1,5 @@
 {% from 'components/badge.html' import badge, scope_badge %}
+{% from 'partials/tech_icon.html' import tech_icon %}
 
 {% macro hero_eyebrow(text, primary=false) %}
 {% set eyebrow_len = text|length %}
@@ -133,15 +134,7 @@
   {% if not clone %}role="listitem"{% endif %}
   {% if clone %}aria-hidden="true"{% endif %}
 >
-  <img
-    class="hero-tech-carousel__logo"
-    src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
-    alt="{% if clone %}{% else %}{{ tech.name }}{% endif %}"
-    width="80"
-    height="80"
-    loading="lazy"
-    decoding="async"
-  >
+  {{ tech_icon(tech.slug, tech.name, class='hero-tech-carousel__logo', decorative=clone) }}
   <span class="hero-tech-carousel__label"{% if clone %} aria-hidden="true"{% endif %}>{{ tech.name }}</span>
 </li>
 {% endmacro %}

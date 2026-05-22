@@ -54,8 +54,8 @@
 
       <div class="page-section__foot">
         {{ hero_actions([
-          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
-          {'url': url_for('contato'), 'label': 'Falar com a jDEVs', 'variant': 'secondary'},
+          {'url': url_for('projetos.projetos'), 'label': 'Ver projetos', 'variant': 'primary'},
+          {'url': url_for('contato.contato'), 'label': 'Falar com a jDEVs', 'variant': 'secondary'},
         ]) }}
       </div>
     </div>
@@ -71,7 +71,7 @@
           </p>
         </div>
         {{ hero_actions([
-          {'url': url_for('contato'), 'label': 'Iniciar conversa', 'variant': 'primary'},
+          {'url': url_for('contato.contato'), 'label': 'Iniciar conversa', 'variant': 'primary'},
         ]) }}
       </div>
     </div>

@@ -5,7 +5,7 @@
   <div class="site-footer__frame">
     <div class="site-footer__layout">
       <div class="site-footer__brand hero-reveal">
-        <a href="{{ url_for('index') }}" class="site-footer__logo">
+        <a href="{{ url_for('main.index') }}" class="site-footer__logo">
           {{ brand_logo_picture('site-footer__logo-img') }}
         </a>
         <p class="site-footer__slogan">A equipe que faz acontecer</p>
@@ -18,10 +18,10 @@
       <nav class="site-footer__nav hero-reveal" aria-label="Navegação do rodapé">
         <p class="site-footer__nav-title">Navegação</p>
         <ul class="site-footer__nav-list">
-          <li><a href="{{ url_for('index') }}" class="site-footer__link">Início</a></li>
-          <li><a href="{{ url_for('projetos') }}" class="site-footer__link">Projetos</a></li>
-          <li><a href="{{ url_for('equipe') }}" class="site-footer__link">Equipe</a></li>
-          <li><a href="{{ url_for('contato') }}" class="site-footer__link">Contato</a></li>
+          <li><a href="{{ url_for('main.index') }}" class="site-footer__link">Início</a></li>
+          <li><a href="{{ url_for('projetos.projetos') }}" class="site-footer__link">Projetos</a></li>
+          <li><a href="{{ url_for('main.equipe') }}" class="site-footer__link">Equipe</a></li>
+          <li><a href="{{ url_for('contato.contato') }}" class="site-footer__link">Contato</a></li>
         </ul>
       </nav>
 
@@ -30,7 +30,7 @@
         <p class="site-footer__contact-text">
           Conte o desafio do seu produto. Respondemos em até um dia útil.
         </p>
-        <a href="{{ url_for('contato') }}" class="site-footer__cta">Agendar conversa</a>
+        <a href="{{ url_for('contato.contato') }}" class="site-footer__cta">Agendar conversa</a>
         <a href="mailto:jdevscommunity@protonmail.com" class="site-footer__mailto">jdevscommunity@protonmail.com</a>
       </div>
     </div>

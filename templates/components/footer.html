@@ -3,7 +3,7 @@
   <div class="site-footer__bounds">
     <div class="site-footer__inner">
       <div class="site-footer__hero">
-        <a href="{{ url_for('index') }}" class="site-footer__logo">
+        <a href="{{ url_for('main.index') }}" class="site-footer__logo">
           {{ brand_logo_picture('site-footer__logo-img') }}
         </a>
 
@@ -19,10 +19,10 @@
         <div class="site-footer__col">
           <h2 class="site-footer__heading">Navegação</h2>
           <ul class="site-footer__links">
-            <li><a href="{{ url_for('index') }}">Início</a></li>
-            <li><a href="{{ url_for('projetos') }}">Projetos</a></li>
-            <li><a href="{{ url_for('equipe') }}">Equipe</a></li>
-            <li><a href="{{ url_for('contato') }}">Contato</a></li>
+            <li><a href="{{ url_for('main.index') }}">Início</a></li>
+            <li><a href="{{ url_for('projetos.projetos') }}">Projetos</a></li>
+            <li><a href="{{ url_for('main.equipe') }}">Equipe</a></li>
+            <li><a href="{{ url_for('contato.contato') }}">Contato</a></li>
           </ul>
         </div>
 
@@ -42,7 +42,7 @@
             Conte o contexto do seu produto. Respondemos com próximos passos claros
             e um plano de entrega enxuto.
           </p>
-          <a href="{{ url_for('contato') }}" class="site-footer__cta">Agendar conversa</a>
+          <a href="{{ url_for('contato.contato') }}" class="site-footer__cta">Agendar conversa</a>
         </div>
       </div>
 

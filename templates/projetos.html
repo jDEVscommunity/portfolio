@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'partials/tech_icon.html' import tech_icon %}
 {% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
 {% from 'components/pages/macros.html' import page_section_head, project_card, process_step %}
 
@@ -32,7 +33,7 @@
         ]) }}
         {{ hero_actions([
           {'url': '#cases', 'label': 'Explorar cases', 'variant': 'primary'},
-          {'url': url_for('contato'), 'label': 'Novo projeto', 'variant': 'secondary'},
+          {'url': url_for('contato.contato'), 'label': 'Novo projeto', 'variant': 'secondary'},
         ]) }}
         {{ hero_footer(
           ['Plataformas', 'APIs', 'SaaS', 'Modernização'],
@@ -66,14 +67,7 @@
                     aria-describedby="page-hero-tech-briefing"
                   >
                     <span class="page-hero__decor-orbit-icon-inner">
-                      <img
-                        src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
-                        alt=""
-                        width="32"
-                        height="32"
-                        loading="lazy"
-                        decoding="async"
-                      >
+                      {{ tech_icon(tech.slug, decorative=true, lg=true) }}
                     </span>
                   </button>
                 </span>
@@ -128,7 +122,7 @@
         {% endfor %}
       </div>
 
-      <div class="project-grid" id="project-grid" role="list">
+      <div class="project-grid cases-grid" id="project-grid" role="list">
         {% for projeto in projetos %}
         {{ project_card(projeto, loop.first, loop.index) }}
         {% endfor %}
@@ -154,8 +148,8 @@
 
       <div class="page-section__foot">
         {{ hero_actions([
-          {'url': url_for('contato'), 'label': 'Contar seu desafio', 'variant': 'primary'},
-          {'url': url_for('equipe'), 'label': 'Conhecer o time', 'variant': 'secondary'},
+          {'url': url_for('contato.contato'), 'label': 'Contar seu desafio', 'variant': 'primary'},
+          {'url': url_for('main.equipe'), 'label': 'Conhecer o time', 'variant': 'secondary'},
         ]) }}
       </div>
     </div>
@@ -171,7 +165,7 @@
           </p>
         </div>
         {{ hero_actions([
-          {'url': url_for('contato'), 'label': 'Agendar conversa', 'variant': 'primary'},
+          {'url': url_for('contato.contato'), 'label': 'Agendar conversa', 'variant': 'primary'},
         ]) }}
       </div>
     </div>

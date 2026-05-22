@@ -23,10 +23,10 @@
   <section class="page-section" id="mensagem" aria-label="Formulário e canais">
     <div class="page-section__frame">
       {{ page_section_head(
-        'Mensagem',
-        'Envie um briefing ou agende uma conversa',
-        'Quanto mais contexto (produto, prazo, integrações), mais objetiva será '
-        'nossa resposta — sem formulários intermináveis.'
+        'Briefing',
+        'Três passos para alinharmos o projeto',
+        'Leva cerca de dois minutos. Na última etapa você descreve o contexto — '
+        'respondemos em até um dia útil com próximos passos objetivos.'
       ) }}
 
       <div class="contact-layout">
@@ -41,82 +41,223 @@
           {% endif %}
           {% endwith %}
 
-          <p
-            class="contact-form__feedback"
-            id="contact-form-feedback"
-            role="status"
-            aria-live="polite"
-            hidden
-          ></p>
-
-          <form method="post" class="contact-form" id="contact-form" novalidate>
+          <form method="post" class="contact-form contact-form--wizard" id="contact-form" novalidate>
             {{ form.hidden_tag() }}
 
-            <div class="contact-form__row">
+            <div class="step-header">
+              <p class="step-meta">
+                <span class="step-meta__count">Etapa <span id="step-current">1</span> de 3</span>
+                <span class="step-meta__sep" aria-hidden="true">·</span>
+                <span class="step-meta__title" id="step-title">Sobre o projeto</span>
+              </p>
+              <div
+                class="step-progress"
+                role="progressbar"
+                aria-valuenow="1"
+                aria-valuemin="1"
+                aria-valuemax="3"
+                aria-label="Etapa 1 de 3: Sobre o projeto"
+              >
+                <div class="step-progress-bar"></div>
+              </div>
+            </div>
+
+            <div class="contact-form__body">
+            <fieldset class="step-panel" data-panel="1">
+              <legend class="step-legend">Sobre o projeto</legend>
+              <p class="step-panel__lead">
+                Escolha o que mais se aproxima — usamos isso para direcionar a proposta inicial.
+              </p>
+
               <div class="contact-form__field">
-                <label class="contact-form__label" for="nome">{{ form.nome.label.text }}</label>
-                {{ form.nome(class='contact-form__input', id='nome', autocomplete='name', placeholder='Seu nome', required=true) }}
-                {% for error in form.nome.errors %}
+                <span class="contact-form__label" id="label-tipo">Qual é o seu projeto?</span>
+                <div class="opcoes-grid opcoes-grid--cards" role="group" aria-labelledby="label-tipo">
+                  <button type="button" class="opcao opcao--card" data-field="tipo_projeto" data-val="Plataforma web" aria-pressed="false">
+                    <span class="opcao__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8"/></svg>
+                    </span>
+                    <span class="opcao__body">
+                      <span class="opcao__title">Plataforma web</span>
+                      <span class="opcao__hint">Portais, dashboards, SaaS</span>
+                    </span>
+                  </button>
+                  <button type="button" class="opcao opcao--card" data-field="tipo_projeto" data-val="API e integrações" aria-pressed="false">
+                    <span class="opcao__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false"><path d="M8 12h8M12 8v8"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>
+                    </span>
+                    <span class="opcao__body">
+                      <span class="opcao__title">API e integrações</span>
+                      <span class="opcao__hint">ERPs, legados, webhooks</span>
+                    </span>
+                  </button>
+                  <button type="button" class="opcao opcao--card" data-field="tipo_projeto" data-val="Produto do zero" aria-pressed="false">
+                    <span class="opcao__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false"><path d="M12 3v18M3 12h18"/></svg>
+                    </span>
+                    <span class="opcao__body">
+                      <span class="opcao__title">Produto do zero</span>
+                      <span class="opcao__hint">Discovery até MVP</span>
+                    </span>
+                  </button>
+                  <button type="button" class="opcao opcao--card" data-field="tipo_projeto" data-val="Outro" aria-pressed="false">
+                    <span class="opcao__icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="2"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg>
+                    </span>
+                    <span class="opcao__body">
+                      <span class="opcao__title">Outro</span>
+                      <span class="opcao__hint">Auditoria, squad, consultoria</span>
+                    </span>
+                  </button>
+                </div>
+                <input type="hidden" id="tipo_projeto" name="tipo_projeto" value="">
+              </div>
+
+              <div class="contact-form__field">
+                <span class="contact-form__label" id="label-estagio">Em qual estágio está?</span>
+                <div class="opcoes-grid opcoes-grid--stage" role="group" aria-labelledby="label-estagio">
+                  <button type="button" class="opcao opcao--pill" data-field="estagio" data-val="Ideia" aria-pressed="false">
+                    <span class="opcao__title">Ideia</span>
+                    <span class="opcao__hint">Validação e escopo</span>
+                  </button>
+                  <button type="button" class="opcao opcao--pill" data-field="estagio" data-val="Protótipo" aria-pressed="false">
+                    <span class="opcao__title">Protótipo</span>
+                    <span class="opcao__hint">Refinar e escalar</span>
+                  </button>
+                  <button type="button" class="opcao opcao--pill" data-field="estagio" data-val="Produto existente" aria-pressed="false">
+                    <span class="opcao__title">Produto existente</span>
+                    <span class="opcao__hint">Evolução ou rewrite</span>
+                  </button>
+                </div>
+                <input type="hidden" id="estagio" name="estagio" value="">
+              </div>
+            </fieldset>
+
+            <fieldset class="step-panel" data-panel="2" hidden>
+              <legend class="step-legend">Seus dados</legend>
+              <p class="step-panel__lead">
+                Usamos apenas para retorno deste contato — sem listas de marketing.
+              </p>
+
+              <div class="contact-form__row">
+                <div class="contact-form__field">
+                  <label class="contact-form__label" for="nome">{{ form.nome.label.text }}</label>
+                  {{ form.nome(class='contact-form__input', id='nome', autocomplete='name', placeholder='Seu nome completo') }}
+                  {% for error in form.nome.errors %}
+                  <p class="contact-form__error">{{ error }}</p>
+                  {% endfor %}
+                </div>
+                <div class="contact-form__field">
+                  <label class="contact-form__label" for="email">{{ form.email.label.text }}</label>
+                  {{ form.email(class='contact-form__input', id='email', autocomplete='email', inputmode='email', placeholder='voce@empresa.com') }}
+                  {% for error in form.email.errors %}
+                  <p class="contact-form__error">{{ error }}</p>
+                  {% endfor %}
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step-panel" data-panel="3" hidden>
+              <legend class="step-legend">Briefing</legend>
+              <p class="step-panel__lead">
+                Quanto mais contexto (prazo, integrações, restrições), mais objetiva será nossa resposta.
+              </p>
+
+              <aside class="contact-recap" id="contact-recap" aria-label="Resumo das escolhas" hidden>
+                <p class="contact-recap__label">Resumo</p>
+                <dl class="contact-recap__list">
+                  <div class="contact-recap__row">
+                    <dt>Projeto</dt>
+                    <dd id="recap-tipo">—</dd>
+                  </div>
+                  <div class="contact-recap__row">
+                    <dt>Estágio</dt>
+                    <dd id="recap-estagio">—</dd>
+                  </div>
+                </dl>
+              </aside>
+
+              <div class="contact-form__field">
+                <label class="contact-form__label" for="assunto">{{ form.assunto.label.text }} <span class="contact-form__optional">(opcional)</span></label>
+                {{ form.assunto(class='contact-form__input', id='assunto', autocomplete='off', placeholder='Ex.: Portal B2B · integração ERP', maxlength='200') }}
+                {% for error in form.assunto.errors %}
                 <p class="contact-form__error">{{ error }}</p>
                 {% endfor %}
               </div>
-              <div class="contact-form__field">
-                <label class="contact-form__label" for="email">{{ form.email.label.text }}</label>
-                {{ form.email(class='contact-form__input', id='email', autocomplete='email', placeholder='voce@empresa.com', required=true) }}
-                {% for error in form.email.errors %}
+
+              <div class="contact-form__field contact-form__field--message">
+                <div class="contact-form__label-row">
+                  <label class="contact-form__label" for="mensagem">{{ form.mensagem.label.text }}</label>
+                  <span class="contact-form__char-count" id="mensagem-count" aria-live="polite">0 / 2000</span>
+                </div>
+                {{ form.mensagem(class='contact-form__textarea', id='mensagem', rows='6', autocomplete='off', placeholder='Objetivo do produto, usuários-alvo, integrações críticas, prazo desejado e stack atual…', maxlength='2000') }}
+                <p class="contact-form__hint">Mínimo de 10 caracteres. Pode ser em tópicos.</p>
+                {% for error in form.mensagem.errors %}
                 <p class="contact-form__error">{{ error }}</p>
                 {% endfor %}
               </div>
+
+              <div class="contact-form__field field--check">
+                <input type="checkbox" id="lgpd" name="lgpd" value="1" required>
+                <label for="lgpd">Autorizo o uso dos dados informados exclusivamente para retorno deste contato.</label>
+              </div>
+            </fieldset>
+
+            <p class="form-feedback" role="status" aria-live="polite" hidden></p>
             </div>
 
-            <div class="contact-form__field">
-              <label class="contact-form__label" for="assunto">{{ form.assunto.label.text }}</label>
-              {{ form.assunto(class='contact-form__input', id='assunto', autocomplete='subject', placeholder='Ex.: Portal B2B · integração ERP') }}
-              {% for error in form.assunto.errors %}
-              <p class="contact-form__error">{{ error }}</p>
-              {% endfor %}
+            <div class="step-nav">
+              <button type="button" id="btn-prev" class="contact-form__btn contact-form__btn--secondary" hidden>
+                <span aria-hidden="true">←</span> Voltar
+              </button>
+              <div class="step-nav__actions">
+                <button type="button" id="btn-next" class="contact-form__btn contact-form__btn--primary">
+                  Continuar <span aria-hidden="true">→</span>
+                </button>
+                <button type="submit" id="btn-submit" class="contact-form__btn contact-form__btn--primary" hidden>
+                  Enviar briefing
+                </button>
+              </div>
             </div>
-
-            <div class="contact-form__field">
-              <label class="contact-form__label" for="mensagem">{{ form.mensagem.label.text }}</label>
-              {{ form.mensagem(class='contact-form__textarea', id='mensagem', rows='6', autocomplete='off', placeholder='Contexto, prazo, stack atual e o que precisa sair do papel…', required=true) }}
-              {% for error in form.mensagem.errors %}
-              <p class="contact-form__error">{{ error }}</p>
-              {% endfor %}
-            </div>
-
-            <button type="submit" class="contact-form__submit hero__cta hero__cta--primary">
-              Enviar mensagem
-            </button>
           </form>
         </div>
 
         <aside class="contact-aside" aria-label="Outros canais">
-          {{ contact_channel('✉', 'E-mail', 'jdevscommunity@protonmail.com', 'mailto:jdevscommunity@protonmail.com', 'Resposta em até 1 dia útil') }}
-          {{ contact_channel('◷', 'Horário', 'Seg–Sex · 9h–18h (BRT)', none, 'Calls sob agendamento') }}
-          {{ contact_channel('◎', 'Formato', 'Remoto · squads dedicados', none, 'Kick-off em até 2 semanas') }}
+          <div class="contact-aside__inner">
+            <p class="contact-aside__title">Prefere outro canal?</p>
 
-          <ul class="contact-faq" aria-label="Perguntas frequentes">
-            <li class="contact-faq__item">
-              <p class="contact-faq__q">O que enviar no primeiro contato?</p>
-              <p class="contact-faq__a">Objetivo do produto, usuários, integrações críticas e prazo desejado — mesmo em tópicos.</p>
-            </li>
-            <li class="contact-faq__item">
-              <p class="contact-faq__q">Vocês assinam NDA?</p>
-              <p class="contact-faq__a">Sim. Enviamos modelo padrão ou revisamos o do seu jurídico antes do discovery.</p>
-            </li>
-            <li class="contact-faq__item">
-              <p class="contact-faq__q">Como funciona a proposta?</p>
-              <p class="contact-faq__a">Fases com entregáveis, squad sugerido e critérios de sucesso — sem horas “caixa preta”.</p>
-            </li>
-          </ul>
+            {{ contact_channel('✉', 'E-mail', 'jdevscommunity@protonmail.com', 'mailto:jdevscommunity@protonmail.com', 'Resposta em até 1 dia útil') }}
+            {{ contact_channel('◷', 'Horário', 'Seg–Sex · 9h–18h (BRT)', none, 'Calls sob agendamento') }}
+            {{ contact_channel('◎', 'Formato', 'Remoto · squads dedicados', none, 'Kick-off em até 2 semanas') }}
+
+            <div class="contact-trust" role="note">
+              <p class="contact-trust__text">
+                <strong>NDA sob demanda</strong> — enviamos modelo padrão ou revisamos o do seu jurídico antes do discovery.
+              </p>
+            </div>
+
+            <div class="contact-faq" aria-label="Perguntas frequentes">
+              <p class="contact-faq__heading">Perguntas frequentes</p>
+              <details class="contact-faq__details">
+                <summary class="contact-faq__summary">O que enviar no primeiro contato?</summary>
+                <p class="contact-faq__a">Objetivo do produto, usuários, integrações críticas e prazo desejado — mesmo em tópicos.</p>
+              </details>
+              <details class="contact-faq__details">
+                <summary class="contact-faq__summary">Vocês assinam NDA?</summary>
+                <p class="contact-faq__a">Sim. Enviamos modelo padrão ou revisamos o do seu jurídico antes do discovery.</p>
+              </details>
+              <details class="contact-faq__details">
+                <summary class="contact-faq__summary">Como funciona a proposta?</summary>
+                <p class="contact-faq__a">Fases com entregáveis, squad sugerido e critérios de sucesso — sem horas “caixa preta”.</p>
+              </details>
+            </div>
+          </div>
         </aside>
       </div>
 
       <div class="page-section__foot">
         {{ hero_actions([
-          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
-          {'url': url_for('equipe'), 'label': 'Conhecer equipe', 'variant': 'secondary'},
+          {'url': url_for('projetos.projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
+          {'url': url_for('main.equipe'), 'label': 'Conhecer equipe', 'variant': 'secondary'},
         ]) }}
       </div>
     </div>
@@ -128,5 +269,5 @@
 
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
-<script src="{{ url_for('static', filename='js/contact-form.js') }}" defer></script>
+<script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}

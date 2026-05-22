@@ -10,8 +10,10 @@
     clone.classList.add("hero-tech-carousel__item--clone");
     clone.removeAttribute("role");
 
-    var img = clone.querySelector(".hero-tech-carousel__logo");
-    if (img) img.setAttribute("alt", "");
+    clone.querySelectorAll("[role='img']").forEach(function (svg) {
+      svg.removeAttribute("role");
+      svg.setAttribute("aria-hidden", "true");
+    });
 
     clone.querySelectorAll(".hero-tech-carousel__label").forEach(function (label) {
       label.setAttribute("aria-hidden", "true");

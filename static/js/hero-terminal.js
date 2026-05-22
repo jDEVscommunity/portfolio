@@ -651,6 +651,22 @@
     return "hero__eyebrow--short";
   }
 
+  function createTitleMark() {
+    var mark = document.createElement("span");
+    mark.className = "hero__title-mark";
+    mark.textContent = ".";
+    return mark;
+  }
+
+  function appendTitleTail(lineEl, nodes) {
+    var tail = document.createElement("span");
+    tail.className = "hero__title-tail";
+    nodes.forEach(function (node) {
+      tail.appendChild(node);
+    });
+    lineEl.appendChild(tail);
+  }
+
   function buildStage(content) {
     stageEl.innerHTML = "";
     stageEl.className = "hero-terminal__stage hero__inner hero__inner--secondary";
@@ -678,27 +694,37 @@
         var emphasis = content.titleEmphasis || "";
         var emphIndex = emphasis ? line.indexOf(emphasis) : -1;
         if (emphIndex !== -1) {
-          span.appendChild(document.createTextNode(line.slice(0, emphIndex)));
+          if (emphIndex > 0) {
+            span.appendChild(document.createTextNode(line.slice(0, emphIndex)));
+          }
           var emph = document.createElement("span");
-          emph.className = "hero__title-emphasis";
+          emph.className = "rotating-word";
+          emph.setAttribute("aria-live", "polite");
           emph.textContent = emphasis;
-          span.appendChild(emph);
           var rest = line.slice(emphIndex + emphasis.length);
           if (isLast && rest.slice(-1) === ".") {
-            span.appendChild(document.createTextNode(rest.slice(0, -1)));
-            var mark = document.createElement("span");
-            mark.className = "hero__title-mark";
-            mark.textContent = ".";
-            span.appendChild(mark);
+            var tailNodes = [emph, createTitleMark()];
+            var restText = rest.slice(0, -1);
+            if (restText) {
+              tailNodes.push(document.createTextNode(restText));
+            }
+            appendTitleTail(span, tailNodes);
           } else {
-            span.appendChild(document.createTextNode(rest));
+            span.appendChild(emph);
+            if (rest) {
+              span.appendChild(document.createTextNode(rest));
+            }
           }
         } else if (isLast && line.slice(-1) === ".") {
-          span.appendChild(document.createTextNode(line.slice(0, -1)));
-          var mark = document.createElement("span");
-          mark.className = "hero__title-mark";
-          mark.textContent = ".";
-          span.appendChild(mark);
+          var wordText = line.slice(0, -1);
+          if (wordText) {
+            appendTitleTail(span, [
+              document.createTextNode(wordText),
+              createTitleMark(),
+            ]);
+          } else {
+            appendTitleTail(span, [createTitleMark()]);
+          }
         } else {
           span.textContent = line;
         }
@@ -733,6 +759,10 @@
         list.appendChild(li);
       });
       stageEl.appendChild(list);
+    }
+
+    if (typeof window.initHeroRotatingWord === "function") {
+      window.initHeroRotatingWord();
     }
 
     return stageEl.querySelectorAll(".hero-terminal__step");

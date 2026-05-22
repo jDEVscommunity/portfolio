@@ -11,11 +11,11 @@
 
 {% macro project_card(projeto, featured=false, index=1) %}
 <article
-  class="project-card{% if featured %} project-card--featured{% endif %}{% if projeto.destaque %} project-card--destaque{% endif %}"
+  class="project-card case-card{% if featured %} project-card--featured{% endif %}{% if projeto.destaque %} project-card--destaque{% endif %}"
   data-category="{{ projeto.categoria }}"
   style="--project-accent: {{ projeto.accent or '220 38% 42%' }}"
 >
-  <a href="{{ url_for('projeto_detalhe', slug=projeto.slug) }}" class="project-card__link">
+  <a href="{{ url_for('projetos.projeto_detalhe', slug=projeto.slug) }}" class="project-card__link">
     <div class="project-card__visual" aria-hidden="true">
       <span class="project-card__visual-index">{{ '%02d'|format(index) }}</span>
       <div class="project-card__visual-grid"></div>

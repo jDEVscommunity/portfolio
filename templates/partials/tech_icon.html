@@ -1,0 +1,10 @@
+{% macro tech_icon(slug, label='', decorative=false, class='', lg=false) %}
+<svg
+  class="tech-icon{% if lg %} tech-icon--lg{% endif %}{% if class %} {{ class }}{% endif %}"
+  {% if decorative %}aria-hidden="true"{% else %}role="img" aria-label="{{ label }}"{% endif %}
+  width="{% if lg %}32{% else %}24{% endif %}"
+  height="{% if lg %}32{% else %}24{% endif %}"
+>
+  <use href="#tech-{{ slug }}"></use>
+</svg>
+{% endmacro %}
