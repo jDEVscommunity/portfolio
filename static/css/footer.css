@@ -1,10 +1,6 @@
 .site-footer {
   flex-shrink: 0;
   width: 100%;
-  --footer-bg: #fff;
-  --footer-text: #000;
-  --footer-text-muted: rgba(0, 0, 0, 0.52);
-  --footer-border: rgba(0, 0, 0, 0.12);
   --tooltip-bg: color-mix(in srgb, var(--footer-text) 92%, var(--footer-bg));
   --tooltip-text: var(--footer-bg);
   --tooltip-border: color-mix(in srgb, var(--footer-bg) 28%, var(--footer-text) 72%);
@@ -12,17 +8,6 @@
   background-color: var(--footer-bg);
   color: var(--footer-text);
   overflow: visible;
-}
-
-[data-theme="dark"] .site-footer {
-  --footer-bg: #000;
-  --footer-text: #fff;
-  --footer-text-muted: rgba(255, 255, 255, 0.52);
-  --footer-border: rgba(255, 255, 255, 0.12);
-  --tooltip-bg: color-mix(in srgb, var(--footer-text) 92%, var(--footer-bg));
-  --tooltip-text: var(--footer-bg);
-  --tooltip-border: color-mix(in srgb, var(--footer-bg) 28%, var(--footer-text) 72%);
-  --tooltip-shadow: 0 4px 14px color-mix(in srgb, var(--footer-text) 22%, var(--footer-bg));
 }
 
 .site-footer__bounds {
@@ -59,6 +44,11 @@
   overflow: visible;
 }
 
+.site-footer__logo .brand-logo {
+  display: block;
+  line-height: 0;
+}
+
 .site-footer__logo-img {
   --logo-artboard-width: 512;
   --logo-pad-inline-start: 86;
@@ -71,22 +61,6 @@
   transform: translateX(
     calc(-100% * var(--logo-pad-inline-start) / var(--logo-artboard-width))
   );
-}
-
-.site-footer__logo-img--light {
-  display: block;
-}
-
-.site-footer__logo-img--dark {
-  display: none;
-}
-
-[data-theme="dark"] .site-footer__logo-img--light {
-  display: none;
-}
-
-[data-theme="dark"] .site-footer__logo-img--dark {
-  display: block;
 }
 
 .site-footer__brand-copy {

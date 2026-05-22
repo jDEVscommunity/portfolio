@@ -1,4 +1,5 @@
 {% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_title_h2, hero_lead, hero_highlights, hero_actions, hero_footer %}
+{% from 'components/badge.html' import badge, delivery_badge %}
 
 {% macro page_section_head(eyebrow, title, lead=none) %}
 <header class="page-section__head">
@@ -21,7 +22,7 @@
     </div>
     <div class="project-card__body">
       <div class="project-card__meta">
-        <span class="project-card__category">{{ projeto.categoria }}</span>
+        {{ delivery_badge(projeto.categoria) }}
         <span class="project-card__year">{{ projeto.ano }}</span>
       </div>
       <h3 class="project-card__title">{{ projeto.titulo }}</h3>
@@ -29,7 +30,7 @@
       {% if projeto.tags %}
       <ul class="project-card__tags" aria-label="Tecnologias">
         {% for tag in projeto.tags[:4] %}
-        <li class="project-card__tag">{{ tag }}</li>
+        <li>{{ badge(tag, 'neutral') }}</li>
         {% endfor %}
       </ul>
       {% endif %}
@@ -52,7 +53,7 @@
     {% if membro.foco %}
     <ul class="team-card__foco" aria-label="Áreas de foco">
       {% for item in membro.foco %}
-      <li class="team-card__foco-item">{{ item }}</li>
+      <li class="team-card__foco-item">{{ badge(item, 'neutral') }}</li>
       {% endfor %}
     </ul>
     {% endif %}

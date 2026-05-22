@@ -1,0 +1,29 @@
+/* —— Sistema de elevação (cards) ——
+ * Nível 0: fundo da página — sem borda/sombra nos utilitários abaixo
+ * Nível 1: .elevation-1 — borda 12–15%, sem sombra
+ * Nível 2: .elevation-2 — borda forte + sombra (hover / destaque)
+ */
+
+.elevation-1,
+.project-card,
+.hero__card,
+.hero__testimonial {
+  border: 1px solid var(--elevation-1-border);
+  box-shadow: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.elevation-2,
+.project-card:hover,
+.project-card:focus-within,
+.project-card--featured,
+.project-card--destaque,
+.hero__card:hover,
+.hero__card:focus-within,
+.hero__testimonial:hover,
+.hero__testimonial:focus-within {
+  border-color: var(--elevation-2-border);
+  box-shadow: var(--elevation-2-shadow);
+}

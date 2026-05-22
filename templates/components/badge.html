@@ -1,0 +1,21 @@
+{% macro badge(text, variant='neutral') %}
+<span class="badge badge-{{ variant }}">{{ text }}</span>
+{% endmacro %}
+
+{% macro delivery_badge(label) %}
+{% if label == 'Entrega complexa' %}
+{{ badge(label, 'brand') }}
+{% elif label == 'Entrega simples' %}
+{{ badge(label, 'success') }}
+{% else %}
+{{ badge(label, 'neutral') }}
+{% endif %}
+{% endmacro %}
+
+{% macro scope_badge(scope, label) %}
+{% if scope == 'complex' %}
+{{ badge(label, 'brand') }}
+{% else %}
+{{ badge(label, 'success') }}
+{% endif %}
+{% endmacro %}

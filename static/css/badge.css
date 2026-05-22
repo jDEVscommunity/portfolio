@@ -1,0 +1,28 @@
+/* —— Badge / tag (entrega, stack, categoria) —— */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  border: none;
+}
+
+.badge-brand {
+  background-color: color-mix(in srgb, var(--color-brand) 12%, var(--color-surface));
+  color: color-mix(in srgb, var(--color-brand) 88%, var(--color-surface));
+}
+
+.badge-neutral {
+  background-color: color-mix(in srgb, var(--color-text) 8%, var(--color-surface));
+  color: color-mix(in srgb, var(--color-text) 72%, var(--color-surface));
+}
+
+.badge-success {
+  background-color: color-mix(in srgb, var(--color-success) 14%, var(--color-surface));
+  color: var(--color-success-text);
+}

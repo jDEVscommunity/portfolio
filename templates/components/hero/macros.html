@@ -1,12 +1,17 @@
+{% from 'components/badge.html' import badge, scope_badge %}
+
 {% macro hero_eyebrow(text, primary=false) %}
 {% set eyebrow_len = text|length %}
 <p class="hero__eyebrow{% if primary %} hero__eyebrow--decorated{% endif %}{% if eyebrow_len > 30 %} hero__eyebrow--long{% elif eyebrow_len > 18 %} hero__eyebrow--medium{% else %} hero__eyebrow--short{% endif %}">{{ text }}</p>
 {% endmacro %}
 
-{% macro hero_title(lines, primary=false) %}
-<h1 class="hero__title{% if primary %} hero__title--primary{% endif %}">
+{% macro hero_title(lines, primary=false, emphasis=none) %}
+<h1 class="hero__title{% if primary %} hero__title--primary{% endif %}"{% if emphasis %} data-title-emphasis="{{ emphasis }}"{% endif %}>
   {% for line in lines %}
-  <span class="hero__title-line">{%- if primary and loop.last and line.endswith('.') -%}{{ line[:-1] }}<span class="hero__title-mark">.</span>{%- else -%}{{ line }}{%- endif -%}</span>
+  <span class="hero__title-line">{%- if emphasis and emphasis in line -%}
+    {%- set parts = line.split(emphasis) -%}
+    {{- parts[0] -}}<span class="hero__title-emphasis">{{ emphasis }}</span>{%- if parts|length > 1 -%}{{ parts[1:]|join(emphasis) }}{%- endif -%}
+  {%- elif primary and loop.last and line.endswith('.') -%}{{ line[:-1] }}<span class="hero__title-mark">.</span>{%- else -%}{{ line }}{%- endif -%}</span>
   {% endfor %}
 </h1>
 {% endmacro %}
@@ -83,7 +88,7 @@
   {% for item in items %}
   <li class="hero__testimonial" role="listitem">
     {% if item.scope_label %}
-    <span class="hero__testimonial-scope hero__testimonial-scope--{{ item.scope }}">{{ item.scope_label }}</span>
+    {{ scope_badge(item.scope, item.scope_label) }}
     {% endif %}
     <blockquote class="hero__testimonial-quote">
       <p>{{ item.quote }}</p>
@@ -113,7 +118,7 @@
     {% if item.tags %}
     <ul class="hero__card-tags" aria-label="Tecnologias e foco">
       {% for tag in item.tags %}
-      <li class="hero__card-tag">{{ tag }}</li>
+      <li>{{ badge(tag, 'neutral') }}</li>
       {% endfor %}
     </ul>
     {% endif %}
@@ -122,38 +127,32 @@
 </ul>
 {% endmacro %}
 
+{% macro hero_tech_carousel_item(tech, clone=false) %}
+<li
+  class="hero-tech-carousel__item{% if clone %} hero-tech-carousel__item--clone{% endif %}"
+  {% if not clone %}role="listitem"{% endif %}
+  {% if clone %}aria-hidden="true"{% endif %}
+>
+  <img
+    class="hero-tech-carousel__logo"
+    src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
+    alt="{% if clone %}{% else %}{{ tech.name }}{% endif %}"
+    width="80"
+    height="80"
+    loading="lazy"
+    decoding="async"
+  >
+  <span class="hero-tech-carousel__label"{% if clone %} aria-hidden="true"{% endif %}>{{ tech.name }}</span>
+</li>
+{% endmacro %}
+
 {% macro hero_tech_carousel(items) %}
 <div class="hero-tech-carousel" aria-label="Tecnologias utilizadas">
   <div class="hero-tech-carousel__fade hero-tech-carousel__fade--start" aria-hidden="true"></div>
   <div class="hero-tech-carousel__viewport">
     <ul class="hero-tech-carousel__track" role="list">
       {% for tech in items %}
-      <li class="hero-tech-carousel__item" role="listitem">
-        <img
-          class="hero-tech-carousel__logo"
-          src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
-          alt="{{ tech.name }}"
-          width="80"
-          height="80"
-          loading="lazy"
-          decoding="async"
-        >
-        <span class="hero-tech-carousel__label">{{ tech.name }}</span>
-      </li>
-      {% endfor %}
-      {% for tech in items %}
-      <li class="hero-tech-carousel__item" role="listitem" aria-hidden="true">
-        <img
-          class="hero-tech-carousel__logo"
-          src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
-          alt=""
-          width="80"
-          height="80"
-          loading="lazy"
-          decoding="async"
-        >
-        <span class="hero-tech-carousel__label">{{ tech.name }}</span>
-      </li>
+      {{ hero_tech_carousel_item(tech) }}
       {% endfor %}
     </ul>
   </div>

@@ -1,19 +1,171 @@
+/* —— Design tokens (única fonte de cores do site) —— */
 :root {
-  --bg: #fff;
-  --text: #000;
-  --text-muted: rgba(0, 0, 0, 0.52);
-  --scrollbar-track: rgba(0, 0, 0, 0.05);
-  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
-  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.36);
+  /* Marca jDEVs */
+  --color-brand: #000000;
+  --color-brand-hover: #262626;
+  --color-brand-muted: rgba(0, 0, 0, 0.52);
+
+  /* Neutros */
+  --color-surface: #ffffff;
+  --color-surface-raised: #fafafa;
+  --color-border: rgba(0, 0, 0, 0.13);
+  --color-border-strong: rgba(0, 0, 0, 0.22);
+
+  /* Elevação (níveis 0–2) */
+  --elevation-1-border: var(--color-border);
+  --elevation-2-border: var(--color-border-strong);
+  --elevation-2-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --color-text: #000000;
+  --color-text-muted: rgba(0, 0, 0, 0.52);
+
+  /* Semânticos */
+  --color-success: #12b76a;
+  --color-success-text: #027a48;
+  --color-success-surface: color-mix(in srgb, var(--color-success) 12%, var(--color-surface));
+  --color-success-border: color-mix(in srgb, var(--color-success) 35%, var(--color-border));
+
+  --color-warning: #febc2e;
+  --color-warning-text: #b45309;
+  --color-warning-bright: #fbbf24;
+
+  --color-danger: #f04438;
+  --color-danger-text: #b42318;
+  --color-danger-bright: #f97066;
+  --color-danger-surface: color-mix(in srgb, var(--color-danger) 10%, var(--color-surface));
+  --color-danger-border: color-mix(in srgb, var(--color-danger) 30%, var(--color-border));
+
+  /* Máscaras e overlays (gradientes / mask-image) */
+  --color-mask: #000000;
+  --color-mask-mid: rgba(0, 0, 0, 0.7);
+  --color-mask-strong: rgba(0, 0, 0, 0.85);
+  --color-mask-soft: rgba(0, 0, 0, 0.35);
+
+  /* Decoração (hero / páginas internas) */
+  --color-frame-border: rgba(55, 55, 55, 0.18);
+  --color-grid-line: rgba(0, 0, 0, 0.06);
+  --color-beam: rgba(0, 0, 0, 0.07);
+  --color-beam-soft: rgba(0, 0, 0, 0.032);
+  --color-panel-overlay: rgba(0, 0, 0, 0.02);
+  --color-eyebrow-overlay: rgba(0, 0, 0, 0.03);
+  --color-shadow-sm: rgba(0, 0, 0, 0.04);
+  --color-shadow-md: rgba(0, 0, 0, 0.06);
+  --color-shadow-lg: rgba(0, 0, 0, 0.35);
+  --color-shadow-xl: rgba(0, 0, 0, 0.45);
+
+  /* Terminal (janela decorativa) */
+  --color-terminal-close: #ff5f57;
+  --color-terminal-minimize: #febc2e;
+  --color-terminal-maximize: #28c840;
+  --color-terminal-bg: rgba(0, 0, 0, 0.03);
+  --color-terminal-code-bg: rgba(0, 0, 0, 0.02);
+  --color-terminal-accent: rgba(0, 0, 0, 0.55);
+
+  /* Destaque de sintaxe no terminal */
+  --color-syntax-green: #0a7a3e;
+  --color-syntax-green-soft: #6ee7a0;
+  --color-syntax-blue: #2563eb;
+  --color-syntax-blue-soft: #93c5fd;
+  --color-syntax-amber: #b45309;
+
+  /* Botão de tema (brilho no modo escuro) */
+  --color-toggle-glow-sm: rgba(255, 255, 255, 0.12);
+  --color-toggle-glow-md: rgba(255, 255, 255, 0.18);
+  --color-toggle-glow-soft: rgba(255, 255, 255, 0.08);
+
+  /* Scrollbar */
+  --color-scrollbar-track: rgba(0, 0, 0, 0.05);
+  --color-scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --color-scrollbar-thumb-hover: rgba(0, 0, 0, 0.36);
+
+  /* Aliases legados (compatibilidade) */
+  --bg: var(--color-surface);
+  --text: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
+  --scrollbar-track: var(--color-scrollbar-track);
+  --scrollbar-thumb: var(--color-scrollbar-thumb);
+  --scrollbar-thumb-hover: var(--color-scrollbar-thumb-hover);
+
+  /* Footer */
+  --footer-bg: var(--color-surface);
+  --footer-text: var(--color-text);
+  --footer-text-muted: var(--color-text-muted);
+  --footer-border: var(--color-border);
+
+  /* Tooltip */
+  --tooltip-bg: color-mix(in srgb, var(--color-text) 92%, var(--color-surface));
+  --tooltip-text: var(--color-surface);
+  --tooltip-border: color-mix(in srgb, var(--color-surface) 28%, var(--color-text) 72%);
+  --tooltip-shadow: 0 4px 14px color-mix(in srgb, var(--color-text) 22%, var(--color-surface));
+
+  /* Hero */
+  --hero-frame-border: var(--color-frame-border);
+  --hero-grid-line: var(--color-grid-line);
+  --hero-beam: var(--color-beam);
+  --hero-beam-soft: var(--color-beam-soft);
+  --hero-primary-bg: color-mix(in srgb, var(--color-surface) 94%, var(--color-text) 6%);
+  --hero-panel-bg: var(--color-panel-overlay);
+  --hero-panel-shadow: 0 1px 2px var(--color-shadow-sm), 0 12px 40px var(--color-shadow-md);
+  --hero-eyebrow-bg: var(--color-eyebrow-overlay);
+  --hero-terminal-bg: var(--color-terminal-bg);
+  --hero-terminal-code-bg: var(--color-terminal-code-bg);
+  --hero-terminal-accent: var(--color-terminal-accent);
+
+  /* Páginas internas */
+  --page-frame-border: var(--color-frame-border);
+  --page-grid-line: var(--color-grid-line);
+  --page-beam: var(--color-beam);
+  --page-beam-soft: var(--color-beam-soft);
+  --page-hero-bg: color-mix(in srgb, var(--color-surface) 94%, var(--color-text) 6%);
+  --page-panel-bg: var(--color-panel-overlay);
+  --page-panel-shadow: 0 1px 2px var(--color-shadow-sm), 0 12px 40px var(--color-shadow-md);
 }
 
 [data-theme="dark"] {
-  --bg: #000;
-  --text: #fff;
-  --text-muted: rgba(255, 255, 255, 0.52);
-  --scrollbar-track: rgba(255, 255, 255, 0.05);
-  --scrollbar-thumb: rgba(255, 255, 255, 0.22);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.38);
+  --color-brand: #ffffff;
+  --color-brand-hover: #e5e5e5;
+  --color-brand-muted: rgba(255, 255, 255, 0.52);
+
+  --color-surface: #000000;
+  --color-surface-raised: #141414;
+  --color-border: rgba(255, 255, 255, 0.14);
+  --color-border-strong: rgba(255, 255, 255, 0.28);
+
+  --elevation-1-border: var(--color-border);
+  --elevation-2-border: var(--color-border-strong);
+  --elevation-2-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.52);
+
+  --color-success-text: #6ce9a6;
+  --color-danger-text: #f97066;
+
+  --color-frame-border: rgba(255, 255, 255, 0.14);
+  --color-grid-line: rgba(255, 255, 255, 0.06);
+  --color-beam: rgba(255, 255, 255, 0.1);
+  --color-beam-soft: rgba(255, 255, 255, 0.045);
+  --color-panel-overlay: rgba(255, 255, 255, 0.03);
+  --color-eyebrow-overlay: rgba(255, 255, 255, 0.04);
+  --color-shadow-sm: rgba(0, 0, 0, 0.35);
+  --color-shadow-md: rgba(0, 0, 0, 0.45);
+
+  --color-terminal-bg: rgba(255, 255, 255, 0.04);
+  --color-terminal-code-bg: rgba(0, 0, 0, 0.35);
+  --color-terminal-accent: rgba(255, 255, 255, 0.65);
+
+  --color-syntax-green: #6ee7a0;
+  --color-syntax-blue: #93c5fd;
+
+  --color-scrollbar-track: rgba(255, 255, 255, 0.05);
+  --color-scrollbar-thumb: rgba(255, 255, 255, 0.22);
+  --color-scrollbar-thumb-hover: rgba(255, 255, 255, 0.38);
+
+  --hero-primary-bg: color-mix(in srgb, var(--color-surface) 90%, var(--color-text) 10%);
+  --hero-panel-shadow: 0 1px 2px var(--color-shadow-sm), 0 16px 48px var(--color-shadow-md);
+
+  --page-hero-bg: color-mix(in srgb, var(--color-surface) 90%, var(--color-text) 10%);
+  --page-panel-shadow: 0 1px 2px var(--color-shadow-sm), 0 16px 48px var(--color-shadow-md);
 }
 
 *,
@@ -35,8 +187,8 @@ html[data-theme="dark"] {
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: var(--bg);
-  color: var(--text);
+  background-color: var(--color-surface);
+  color: var(--color-text);
   font-family: inherit;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -52,19 +204,19 @@ a {
   width: 3.25rem;
   height: 3.25rem;
   padding: 0;
-  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text) 22%, transparent);
   border-radius: var(--btn-radius);
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--bg) 72%, var(--text) 28%) 0%,
-    color-mix(in srgb, var(--bg) 88%, var(--text) 12%) 100%
+    color-mix(in srgb, var(--color-surface) 72%, var(--color-text) 28%) 0%,
+    color-mix(in srgb, var(--color-surface) 88%, var(--color-text) 12%) 100%
   );
-  color: var(--text);
+  color: var(--color-text);
   cursor: pointer;
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--bg) 40%, var(--text) 60%),
-    0 4px 18px color-mix(in srgb, var(--text) 18%, transparent),
-    0 0 24px color-mix(in srgb, var(--text) 8%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--color-surface) 40%, var(--color-text) 60%),
+    0 4px 18px color-mix(in srgb, var(--color-text) 18%, transparent),
+    0 0 24px color-mix(in srgb, var(--color-text) 8%, transparent);
   transition:
     color 0.2s ease,
     transform 0.2s ease,
@@ -75,30 +227,30 @@ a {
 
 .theme-toggle:hover {
   transform: translateY(-2px) scale(1.04);
-  border-color: color-mix(in srgb, var(--text) 38%, transparent);
+  border-color: color-mix(in srgb, var(--color-text) 38%, transparent);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--text) 35%, transparent),
-    0 8px 28px color-mix(in srgb, var(--text) 22%, transparent),
-    0 0 32px color-mix(in srgb, var(--text) 14%, transparent);
+    0 0 0 1px color-mix(in srgb, var(--color-text) 35%, transparent),
+    0 8px 28px color-mix(in srgb, var(--color-text) 22%, transparent),
+    0 0 32px color-mix(in srgb, var(--color-text) 14%, transparent);
 }
 
 .theme-toggle:focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--color-text);
   outline-offset: 4px;
 }
 
 [data-theme="dark"] .theme-toggle {
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--text) 28%, transparent),
-    0 4px 22px rgba(255, 255, 255, 0.12),
-    0 0 28px rgba(255, 255, 255, 0.08);
+    0 0 0 1px color-mix(in srgb, var(--color-text) 28%, transparent),
+    0 4px 22px var(--color-toggle-glow-sm),
+    0 0 28px var(--color-toggle-glow-soft);
 }
 
 [data-theme="dark"] .theme-toggle:hover {
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--text) 42%, transparent),
-    0 8px 32px rgba(255, 255, 255, 0.18),
-    0 0 36px rgba(255, 255, 255, 0.12);
+    0 0 0 1px color-mix(in srgb, var(--color-text) 42%, transparent),
+    0 8px 32px var(--color-toggle-glow-md),
+    0 0 36px var(--color-toggle-glow-sm);
 }
 
 .theme-toggle__icon {

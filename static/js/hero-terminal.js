@@ -79,10 +79,13 @@
     var inner = source.querySelector(".hero__inner--primary");
     if (!inner) return null;
 
+    var titleEl = inner.querySelector(".hero__title");
     var titleLines = [];
     inner.querySelectorAll(".hero__title-line").forEach(function (line) {
       titleLines.push(line.textContent.trim());
     });
+    var titleEmphasis =
+      titleEl && titleEl.dataset.titleEmphasis ? titleEl.dataset.titleEmphasis : "";
 
     var highlights = [];
     inner.querySelectorAll(".hero__highlight").forEach(function (item) {
@@ -100,6 +103,7 @@
     return {
       eyebrow: eyebrow ? eyebrow.textContent.trim() : "",
       titleLines: titleLines,
+      titleEmphasis: titleEmphasis,
       lead: lead ? lead.textContent.trim() : "",
       highlights: highlights,
     };
@@ -664,11 +668,32 @@
     if (content.titleLines.length) {
       var title = document.createElement("h1");
       title.className = "hero__title hero-terminal__step";
+      if (content.titleEmphasis) {
+        title.dataset.titleEmphasis = content.titleEmphasis;
+      }
       content.titleLines.forEach(function (line, index) {
         var span = document.createElement("span");
         span.className = "hero__title-line";
         var isLast = index === content.titleLines.length - 1;
-        if (isLast && line.slice(-1) === ".") {
+        var emphasis = content.titleEmphasis || "";
+        var emphIndex = emphasis ? line.indexOf(emphasis) : -1;
+        if (emphIndex !== -1) {
+          span.appendChild(document.createTextNode(line.slice(0, emphIndex)));
+          var emph = document.createElement("span");
+          emph.className = "hero__title-emphasis";
+          emph.textContent = emphasis;
+          span.appendChild(emph);
+          var rest = line.slice(emphIndex + emphasis.length);
+          if (isLast && rest.slice(-1) === ".") {
+            span.appendChild(document.createTextNode(rest.slice(0, -1)));
+            var mark = document.createElement("span");
+            mark.className = "hero__title-mark";
+            mark.textContent = ".";
+            span.appendChild(mark);
+          } else {
+            span.appendChild(document.createTextNode(rest));
+          }
+        } else if (isLast && line.slice(-1) === ".") {
           span.appendChild(document.createTextNode(line.slice(0, -1)));
           var mark = document.createElement("span");
           mark.className = "hero__title-mark";

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_actions %}
 {% from 'components/pages/macros.html' import page_section_head, project_card %}
+{% from 'components/badge.html' import badge, delivery_badge %}
 
 {% block title %}{{ projeto.titulo }}{% endblock %}
 
@@ -19,13 +20,23 @@
   <div class="page-hero__frame">
     <div class="page-hero__layout">
       <div class="page-hero__copy">
-        {{ hero_eyebrow(projeto.categoria ~ ' · ' ~ projeto.ano, true) }}
+        {{ hero_eyebrow(projeto.cliente ~ ' · ' ~ projeto.ano, true) }}
+        <div class="project-detail-meta project-detail-meta--hero">
+          {{ delivery_badge(projeto.categoria) }}
+        </div>
         {{ hero_title([projeto.titulo]) }}
         {{ hero_lead(projeto.subtitulo or projeto.resumo) }}
         <dl class="project-detail-meta">
           <div class="project-detail-meta__item"><strong>Cliente</strong> {{ projeto.cliente }}</div>
           {% if projeto.tags %}
-          <div class="project-detail-meta__item"><strong>Stack</strong> {{ projeto.tags|join(' · ') }}</div>
+          <div class="project-detail-meta__item project-detail-meta__item--stack">
+            <strong>Stack</strong>
+            <ul class="project-detail-meta__tags" aria-label="Stack">
+              {% for tag in projeto.tags %}
+              <li>{{ badge(tag, 'neutral') }}</li>
+              {% endfor %}
+            </ul>
+          </div>
           {% endif %}
         </dl>
         {{ hero_actions([

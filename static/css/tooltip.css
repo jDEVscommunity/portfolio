@@ -1,10 +1,3 @@
-:root {
-  --tooltip-bg: color-mix(in srgb, var(--text) 92%, var(--bg));
-  --tooltip-text: var(--bg);
-  --tooltip-border: color-mix(in srgb, var(--bg) 28%, var(--text) 72%);
-  --tooltip-shadow: 0 4px 14px color-mix(in srgb, var(--text) 22%, var(--bg));
-}
-
 .tooltip-host {
   position: relative;
   display: inline-flex;

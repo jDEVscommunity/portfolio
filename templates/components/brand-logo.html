@@ -1,0 +1,24 @@
+{# logo-dark.png = logo escuro (tema claro); logo-light.png = logo claro (tema escuro) #}
+{% macro brand_logo_picture(img_class, width=168, height=56) %}
+{% set logo_on_light_theme = url_for('static', filename='img/logo-dark.png') %}
+{% set logo_on_dark_theme = url_for('static', filename='img/logo-light.png') %}
+<span class="brand-logo">
+  <img
+    src="{{ logo_on_light_theme }}"
+    alt="jDEVs"
+    class="{{ img_class }} brand-logo__img brand-logo__img--light-theme"
+    width="{{ width }}"
+    height="{{ height }}"
+    decoding="async"
+  >
+  <img
+    src="{{ logo_on_dark_theme }}"
+    alt=""
+    class="{{ img_class }} brand-logo__img brand-logo__img--dark-theme"
+    width="{{ width }}"
+    height="{{ height }}"
+    decoding="async"
+    aria-hidden="true"
+  >
+</span>
+{% endmacro %}

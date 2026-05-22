@@ -1,24 +1,9 @@
 {% from 'components/header-nav-item.html' import nav_item %}
+{% from 'components/brand-logo.html' import brand_logo_picture %}
 <header class="site-header" id="site-header">
   <div class="site-header__inner">
     <a href="{{ url_for('index') }}" class="site-header__logo">
-      <img
-        src="{{ url_for('static', filename='img/logo-dark.png') }}"
-        alt="jDEVs"
-        class="site-header__logo-img site-header__logo-img--light"
-        width="168"
-        height="56"
-        decoding="async"
-      >
-      <img
-        src="{{ url_for('static', filename='img/logo-light.png') }}"
-        alt=""
-        class="site-header__logo-img site-header__logo-img--dark"
-        width="168"
-        height="56"
-        decoding="async"
-        aria-hidden="true"
-      >
+      {{ brand_logo_picture('site-header__logo-img') }}
     </a>
     <button
       type="button"

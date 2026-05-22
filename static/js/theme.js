@@ -15,15 +15,20 @@
 
   function applyFavicon(theme) {
     const fav = window.__jdevsFavicon;
-    if (!fav) return;
-    const set = fav[theme] || fav.light;
-    document.querySelectorAll("link[data-favicon]").forEach((link) => {
-      const size = link.getAttribute("sizes");
-      if (size === "any") link.href = set.any;
-      else if (size === "32x32") link.href = set["32"];
-      else if (size === "16x16") link.href = set["16"];
-      else if (size === "180x180") link.href = set["180"];
-    });
+    if (fav) {
+      const set = fav[theme] || fav.light;
+      document.querySelectorAll("link[data-favicon]").forEach((link) => {
+        const size = link.getAttribute("sizes");
+        if (size === "32x32") link.href = set["32"];
+        else if (size === "16x16") link.href = set["16"];
+        else if (size === "180x180") link.href = set["180"];
+      });
+    }
+    const colors = window.__jdevsThemeColor;
+    const metaTheme = document.getElementById("meta-theme-color");
+    if (colors && metaTheme) {
+      metaTheme.setAttribute("content", colors[theme] || colors.light);
+    }
   }
 
   window.jdevsApplyFavicon = applyFavicon;

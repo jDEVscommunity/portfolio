@@ -1,0 +1,31 @@
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_actions, hero_footer %}
+
+<section class="page-intro page-intro--404" aria-label="Página não encontrada">
+  <div class="page-intro__frame">
+    <div class="page-intro__layout page-intro__layout--404">
+      <div class="page-intro__copy">
+        {{ hero_eyebrow('Erro 404', true) }}
+        {{ hero_title(['Esta página', 'não existe.'], emphasis='não existe') }}
+        {{ hero_lead(
+          'O endereço pode estar incorreto, o link ficou desatualizado ou o conteúdo foi movido. '
+          'Volte ao início e continue explorando o portfólio jDEVs.'
+        ) }}
+        {{ hero_actions([
+          {'url': url_for('index'), 'label': 'Voltar ao início', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
+        ]) }}
+        {{ hero_footer(
+          ['Home', 'Projetos', 'Equipe', 'Contato'],
+          'Navegação'
+        ) }}
+      </div>
+
+      <div class="page-intro__stage" aria-hidden="true">
+        <div class="page-intro__404-display">
+          <span class="page-intro__404-code">404</span>
+          <p class="page-intro__404-hint">URL não encontrada no servidor</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,25 +1,10 @@
+{% from 'components/brand-logo.html' import brand_logo_picture %}
 <footer class="site-footer" aria-label="Rodapé">
   <div class="site-footer__bounds">
     <div class="site-footer__inner">
       <div class="site-footer__hero">
         <a href="{{ url_for('index') }}" class="site-footer__logo">
-          <img
-            src="{{ url_for('static', filename='img/logo-dark.png') }}"
-            alt="jDEVs"
-            class="site-footer__logo-img site-footer__logo-img--light"
-            width="168"
-            height="56"
-            decoding="async"
-          >
-          <img
-            src="{{ url_for('static', filename='img/logo-light.png') }}"
-            alt=""
-            class="site-footer__logo-img site-footer__logo-img--dark"
-            width="168"
-            height="56"
-            decoding="async"
-            aria-hidden="true"
-          >
+          {{ brand_logo_picture('site-footer__logo-img') }}
         </a>
 
         <div class="site-footer__brand-copy">

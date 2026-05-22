@@ -20,3 +20,10 @@ class Config:
 
     # WTF
     WTF_CSRF_ENABLED = True
+
+    # Content-Security-Policy
+    # False = Content-Security-Policy-Report-Only (não bloqueia; use para validar no DevTools).
+    # True  = Content-Security-Policy (bloqueia violações). Antes de ativar em produção,
+    #         ajuste script-src (há script inline no base.html) ou use nonces.
+    CSP_ENFORCE = os.getenv("CSP_ENFORCE", "False").lower() in ("true", "1", "yes")
+    CSP_REPORT_URI = os.getenv("CSP_REPORT_URI", "/csp-report")

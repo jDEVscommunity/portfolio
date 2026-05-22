@@ -41,20 +41,28 @@
           {% endif %}
           {% endwith %}
 
-          <form method="post" class="contact-form" novalidate>
+          <p
+            class="contact-form__feedback"
+            id="contact-form-feedback"
+            role="status"
+            aria-live="polite"
+            hidden
+          ></p>
+
+          <form method="post" class="contact-form" id="contact-form" novalidate>
             {{ form.hidden_tag() }}
 
             <div class="contact-form__row">
               <div class="contact-form__field">
                 <label class="contact-form__label" for="nome">{{ form.nome.label.text }}</label>
-                {{ form.nome(class='contact-form__input', id='nome', autocomplete='name', placeholder='Seu nome') }}
+                {{ form.nome(class='contact-form__input', id='nome', autocomplete='name', placeholder='Seu nome', required=true) }}
                 {% for error in form.nome.errors %}
                 <p class="contact-form__error">{{ error }}</p>
                 {% endfor %}
               </div>
               <div class="contact-form__field">
                 <label class="contact-form__label" for="email">{{ form.email.label.text }}</label>
-                {{ form.email(class='contact-form__input', id='email', autocomplete='email', placeholder='voce@empresa.com') }}
+                {{ form.email(class='contact-form__input', id='email', autocomplete='email', placeholder='voce@empresa.com', required=true) }}
                 {% for error in form.email.errors %}
                 <p class="contact-form__error">{{ error }}</p>
                 {% endfor %}
@@ -63,7 +71,7 @@
 
             <div class="contact-form__field">
               <label class="contact-form__label" for="assunto">{{ form.assunto.label.text }}</label>
-              {{ form.assunto(class='contact-form__input', id='assunto', placeholder='Ex.: Portal B2B · integração ERP') }}
+              {{ form.assunto(class='contact-form__input', id='assunto', autocomplete='subject', placeholder='Ex.: Portal B2B · integração ERP') }}
               {% for error in form.assunto.errors %}
               <p class="contact-form__error">{{ error }}</p>
               {% endfor %}
@@ -71,7 +79,7 @@
 
             <div class="contact-form__field">
               <label class="contact-form__label" for="mensagem">{{ form.mensagem.label.text }}</label>
-              {{ form.mensagem(class='contact-form__textarea', id='mensagem', rows='6', placeholder='Contexto, prazo, stack atual e o que precisa sair do papel…') }}
+              {{ form.mensagem(class='contact-form__textarea', id='mensagem', rows='6', autocomplete='off', placeholder='Contexto, prazo, stack atual e o que precisa sair do papel…', required=true) }}
               {% for error in form.mensagem.errors %}
               <p class="contact-form__error">{{ error }}</p>
               {% endfor %}
@@ -120,4 +128,5 @@
 
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/contact-form.js') }}" defer></script>
 {% endblock %}

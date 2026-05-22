@@ -1,27 +1,12 @@
 {% from 'components/header-nav-item.html' import nav_item %}
+{% from 'components/brand-logo.html' import brand_logo_picture %}
 
 <footer class="site-footer" aria-label="Rodapé">
   <div class="site-footer__frame">
     <div class="site-footer__layout">
       <div class="site-footer__brand hero-reveal">
         <a href="{{ url_for('index') }}" class="site-footer__logo">
-          <img
-            src="{{ url_for('static', filename='img/logo-dark.png') }}"
-            alt="jDEVs"
-            class="site-footer__logo-img site-footer__logo-img--light"
-            width="168"
-            height="56"
-            decoding="async"
-          >
-          <img
-            src="{{ url_for('static', filename='img/logo-light.png') }}"
-            alt=""
-            class="site-footer__logo-img site-footer__logo-img--dark"
-            width="168"
-            height="56"
-            decoding="async"
-            aria-hidden="true"
-          >
+          {{ brand_logo_picture('site-footer__logo-img') }}
         </a>
         <p class="site-footer__slogan">A equipe que faz acontecer</p>
         <p class="site-footer__lead">

@@ -5,47 +5,96 @@
     return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   }
 
-  function init() {
-    var carousel = document.querySelector(".hero-tech-carousel");
-    if (!carousel) return;
+  function applyCloneAccessibility(clone) {
+    clone.setAttribute("aria-hidden", "true");
+    clone.classList.add("hero-tech-carousel__item--clone");
+    clone.removeAttribute("role");
 
+    var img = clone.querySelector(".hero-tech-carousel__logo");
+    if (img) img.setAttribute("alt", "");
+
+    clone.querySelectorAll(".hero-tech-carousel__label").forEach(function (label) {
+      label.setAttribute("aria-hidden", "true");
+    });
+  }
+
+  function getOriginalItems(track) {
+    return track.querySelectorAll(
+      ".hero-tech-carousel__item:not(.hero-tech-carousel__item--clone)"
+    );
+  }
+
+  function duplicateTrackItems(track) {
+    var originals = getOriginalItems(track);
+    if (originals.length < 2) return originals.length;
+
+    originals.forEach(function (item) {
+      var clone = item.cloneNode(true);
+      applyCloneAccessibility(clone);
+      track.appendChild(clone);
+    });
+
+    return originals.length;
+  }
+
+  function measureOriginalWidth(track, originalCount) {
+    var originals = getOriginalItems(track);
+    var width = 0;
+
+    for (var i = 0; i < originalCount; i += 1) {
+      width += originals[i].getBoundingClientRect().width;
+    }
+
+    if (!width) return 0;
+
+    var gap = parseFloat(getComputedStyle(track).gap) || 0;
+    return width + gap * (originalCount - 1);
+  }
+
+  function initCarousel(carousel) {
     var track = carousel.querySelector(".hero-tech-carousel__track");
     if (!track) return;
 
+    track.querySelectorAll(".hero-tech-carousel__item--clone").forEach(function (clone) {
+      clone.remove();
+    });
+
     if (prefersReducedMotion()) {
+      carousel.classList.remove("hero-tech-carousel--ready");
       carousel.classList.add("hero-tech-carousel--static");
       return;
     }
 
-    var items = track.querySelectorAll(".hero-tech-carousel__item");
-    if (items.length < 2) return;
+    carousel.classList.remove("hero-tech-carousel--static");
 
-    var half = items.length / 2;
-    var width = 0;
-    for (var i = 0; i < half; i += 1) {
-      width += items[i].getBoundingClientRect().width;
-    }
+    var originalCount = duplicateTrackItems(track);
+    if (originalCount < 2) return;
+
+    var width = measureOriginalWidth(track, originalCount);
     if (!width) return;
 
-    var gap = parseFloat(getComputedStyle(track).gap) || 0;
-    width += gap * (half - 1);
     track.style.setProperty("--carousel-shift", "-" + width + "px");
     carousel.classList.add("hero-tech-carousel--ready");
+  }
+
+  function initAll() {
+    document.querySelectorAll(".hero-tech-carousel").forEach(initCarousel);
   }
 
   var resizeTimer;
 
   function onResize() {
-    var carousel = document.querySelector(".hero-tech-carousel");
-    if (!carousel || carousel.classList.contains("hero-tech-carousel--static")) return;
-    carousel.classList.remove("hero-tech-carousel--ready");
-    init();
+    document.querySelectorAll(".hero-tech-carousel").forEach(function (carousel) {
+      if (carousel.classList.contains("hero-tech-carousel--static")) return;
+      carousel.classList.remove("hero-tech-carousel--ready");
+    });
+    initAll();
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", initAll);
   } else {
-    init();
+    initAll();
   }
 
   window.addEventListener("resize", function () {
