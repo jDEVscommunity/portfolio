@@ -1,41 +1,100 @@
-{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions %}
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
 
 <section class="page-intro page-intro--equipe" aria-label="Equipe">
   <div class="page-intro__frame">
     <div class="page-intro__layout page-intro__layout--equipe">
       <div class="page-intro__copy">
-        {{ hero_eyebrow('Pessoas · jDEVs') }}
-        {{ hero_title_h2('Dois fundadores. Um squad por projeto.') }}
+        {{ hero_eyebrow('Pessoas · Squad jDEVs', true) }}
+        {{ hero_title(['Dois fundadores.', 'Um squad por projeto.']) }}
         {{ hero_lead(
-          'Lucas e Davi assumem produto e engenharia no mesmo fluxo — discovery, '
-          'build e operação, sem repassar contexto entre times.'
+          'Lucas e Davi conduzem produto e engenharia no mesmo fluxo — discovery, '
+          'build e operação, sem repassar contexto entre times ou fornecedores.'
         ) }}
-        {{ hero_actions([
-          {'url': '#time', 'label': 'Ver perfis', 'variant': 'primary'},
-          {'url': url_for('projetos'), 'label': 'Ver cases', 'variant': 'secondary'},
+        {{ hero_highlights([
+          {'value': equipe|length|string, 'label': 'fundadores no core'},
+          {'value': '1', 'label': 'squad dedicado por projeto'},
+          {'value': '100%', 'label': 'ownership de ponta a ponta'},
         ]) }}
+        {{ hero_actions([
+          {'url': '#time', 'label': 'Ver perfis completos', 'variant': 'primary'},
+          {'url': url_for('projetos'), 'label': 'Explorar cases', 'variant': 'secondary'},
+        ]) }}
+        {{ hero_footer(
+          ['Discovery', 'Build', 'Operação', 'B2B'],
+          'Ciclo de entrega'
+        ) }}
       </div>
 
-      <div class="page-intro__roster" role="list" aria-label="Fundadores">
-        <div class="page-intro__roster-line" aria-hidden="true"></div>
-        {% for membro in equipe %}
-        <article class="page-intro__roster-card" role="listitem">
-          <div class="page-intro__roster-avatar" aria-hidden="true">
-            <span>{{ membro.inicial }}</span>
+      <div class="page-intro__stage" aria-label="Painel do squad">
+        <div class="page-intro__squad">
+          <header class="page-intro__squad-head">
+            <div class="page-intro__squad-head-main">
+              <span class="page-intro__squad-pulse" aria-hidden="true"></span>
+              <span class="page-intro__squad-status">Squad ativo</span>
+            </div>
+            <span class="page-intro__squad-meta">jDEVs · core team</span>
+          </header>
+
+          <div class="page-intro__squad-pipeline" aria-hidden="true">
+            <span>Discovery</span>
+            <span class="page-intro__squad-pipeline-arrow" aria-hidden="true"></span>
+            <span>Build</span>
+            <span class="page-intro__squad-pipeline-arrow" aria-hidden="true"></span>
+            <span>Ops</span>
           </div>
-          <div class="page-intro__roster-body">
-            <h3 class="page-intro__roster-nome">{{ membro.nome }}</h3>
-            <p class="page-intro__roster-cargo">{{ membro.cargo }}</p>
-            {% if membro.foco %}
-            <ul class="page-intro__roster-foco">
-              {% for item in membro.foco[:2] %}
-              <li>{{ item }}</li>
-              {% endfor %}
-            </ul>
-            {% endif %}
+
+          <div class="page-intro__squad-roster" role="list">
+            {% for membro in equipe %}
+            <article class="page-intro__squad-card" role="listitem">
+              <div class="page-intro__squad-card-top">
+                <div class="page-intro__squad-avatar" aria-hidden="true">
+                  <span>{{ membro.inicial }}</span>
+                </div>
+                <div class="page-intro__squad-card-head">
+                  <h3 class="page-intro__squad-nome">{{ membro.nome }}</h3>
+                  <p class="page-intro__squad-cargo">{{ membro.cargo }}</p>
+                </div>
+                {% if membro.linkedin or membro.github %}
+                <div class="page-intro__squad-links">
+                  {% if membro.linkedin %}
+                  <a
+                    href="{{ membro.linkedin }}"
+                    class="page-intro__squad-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn de {{ membro.nome }}"
+                  >in</a>
+                  {% endif %}
+                  {% if membro.github %}
+                  <a
+                    href="{{ membro.github }}"
+                    class="page-intro__squad-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub de {{ membro.nome }}"
+                  >gh</a>
+                  {% endif %}
+                </div>
+                {% endif %}
+              </div>
+              {% if membro.bio %}
+              <p class="page-intro__squad-bio">{{ membro.bio }}</p>
+              {% endif %}
+              {% if membro.foco %}
+              <ul class="page-intro__squad-foco" aria-label="Foco técnico">
+                {% for item in membro.foco %}
+                <li>{{ item }}</li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </article>
+            {% endfor %}
           </div>
-        </article>
-        {% endfor %}
+
+          <footer class="page-intro__squad-foot">
+            <span class="page-intro__squad-foot-label">Mesmo time do briefing ao deploy</span>
+          </footer>
+        </div>
       </div>
     </div>
   </div>

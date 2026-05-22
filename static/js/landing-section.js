@@ -9,6 +9,9 @@
 
   function reveal(el) {
     el.classList.add("is-visible");
+    if (window.HeroCountUp) {
+      window.HeroCountUp.animateWithin(el);
+    }
   }
 
   function setDelay(el, seconds) {

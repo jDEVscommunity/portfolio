@@ -39,6 +39,17 @@ def buscar_projeto(slug: str) -> dict | None:
     return next((p for p in projetos if p.get("slug") == slug), None)
 
 
+def tecnologias_com_logo() -> list[dict]:
+    """Tecnologias da landing que possuem SVG em static/img/tech/."""
+    tech_dir = Path(app.root_path) / "static" / "img" / "tech"
+    todas = carregar_json("landing_tecnologias.json")
+    return [
+        t
+        for t in todas
+        if (tech_dir / f"{t.get('slug', '')}.svg").is_file()
+    ]
+
+
 @app.route("/")
 def index():
     entregas = carregar_json("landing_entregas.json")
@@ -60,6 +71,7 @@ def projetos():
         "projetos.html",
         projetos=lista,
         categorias=categorias,
+        tecnologias_orbit=tecnologias_com_logo(),
     )
 
 

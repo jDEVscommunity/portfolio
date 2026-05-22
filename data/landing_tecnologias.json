@@ -1,10 +1,67 @@
 [
-  { "name": "React", "slug": "react" },
-  { "name": "TypeScript", "slug": "typescript" },
-  { "name": "PHP", "slug": "php" },
-  { "name": "Laravel", "slug": "laravel" },
-  { "name": "Node.js", "slug": "nodejs" },
-  { "name": "Python", "slug": "python" },
-  { "name": "PostgreSQL", "slug": "postgresql" },
-  { "name": "Docker", "slug": "docker" }
+  {
+    "name": "React",
+    "slug": "react",
+    "briefing": "Biblioteca para interfaces web reativas — componentes reutilizáveis e ecossistema maduro para SPAs e produtos B2B."
+  },
+  {
+    "name": "TypeScript",
+    "slug": "typescript",
+    "briefing": "JavaScript com tipagem estática — reduz bugs em bases grandes e melhora autocomplete em times."
+  },
+  {
+    "name": "PHP",
+    "slug": "php",
+    "briefing": "Linguagem server-side ampla em hospedagem — APIs, CMS e integrações com deploy simples."
+  },
+  {
+    "name": "Laravel",
+    "slug": "laravel",
+    "briefing": "Framework PHP com convenções — acelera APIs REST, autenticação, filas e CRUD com produtividade."
+  },
+  {
+    "name": "Node.js",
+    "slug": "nodejs",
+    "briefing": "JavaScript no servidor — APIs em tempo real, BFFs e ferramentas de build no mesmo ecossistema do front."
+  },
+  {
+    "name": "Python",
+    "slug": "python",
+    "briefing": "Versátil para APIs, automação e dados — sintaxe clara e forte em integrações e serviços backend."
+  },
+  {
+    "name": "PostgreSQL",
+    "slug": "postgresql",
+    "briefing": "Banco relacional robusto — JSON, extensões e consistência para produtos com regras de negócio densas."
+  },
+  {
+    "name": "MySQL",
+    "slug": "mysql",
+    "briefing": "Banco relacional popular — ampla hospedagem e ótimo para aplicações web tradicionais e relatórios."
+  },
+  {
+    "name": "Docker",
+    "slug": "docker",
+    "briefing": "Containers que empacotam app e dependências — ambientes reproduzíveis do desenvolvimento à produção."
+  },
+  {
+    "name": "TailwindCSS",
+    "slug": "tailwindcss",
+    "briefing": "CSS utility-first — montamos interfaces consistentes com ritmo rápido, sem sair do HTML."
+  },
+  {
+    "name": "ShadcnUI",
+    "slug": "shadcnui",
+    "briefing": "Componentes React acessíveis sobre Radix — copiamos no projeto e customizamos sem vendor lock-in."
+  },
+  {
+    "name": "JS",
+    "slug": "javascript",
+    "briefing": "Linguagem da web no browser e no servidor — base do front moderno e de grande parte das nossas APIs."
+  },
+  {
+    "name": "FastAPI",
+    "slug": "fastapi",
+    "briefing": "Framework Python para APIs — tipagem, documentação automática e alta performance com pouco boilerplate."
+  }
 ]

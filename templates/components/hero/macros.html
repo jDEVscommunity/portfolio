@@ -6,7 +6,7 @@
 {% macro hero_title(lines, primary=false) %}
 <h1 class="hero__title{% if primary %} hero__title--primary{% endif %}">
   {% for line in lines %}
-  <span class="hero__title-line">{{ line }}</span>
+  <span class="hero__title-line">{%- if primary and loop.last and line.endswith('.') -%}{{ line[:-1] }}<span class="hero__title-mark">.</span>{%- else -%}{{ line }}{%- endif -%}</span>
   {% endfor %}
 </h1>
 {% endmacro %}
@@ -23,7 +23,7 @@
 <ul class="hero__highlights" aria-label="Diferenciais">
   {% for item in items %}
   <li class="hero__highlight">
-    <span class="hero__highlight-value">{{ item.value }}</span>
+    <span class="hero__highlight-value" data-count-up data-count-to="{{ item.value }}">{{ item.value }}</span>
     <span class="hero__highlight-label">{{ item.label }}</span>
   </li>
   {% endfor %}

@@ -1,5 +1,5 @@
 {% from 'components/header-nav-item.html' import nav_item %}
-<header class="site-header">
+<header class="site-header" id="site-header">
   <div class="site-header__inner">
     <a href="{{ url_for('index') }}" class="site-header__logo">
       <img
@@ -20,11 +20,26 @@
         aria-hidden="true"
       >
     </a>
-    <nav class="site-header__nav" aria-label="Principal">
+    <button
+      type="button"
+      class="site-header__menu-btn"
+      id="site-header-menu-btn"
+      aria-expanded="false"
+      aria-controls="site-nav"
+    >
+      <span class="site-header__menu-label visually-hidden">Abrir menu</span>
+      <span class="site-header__menu-bars" aria-hidden="true">
+        <span class="site-header__menu-bar"></span>
+        <span class="site-header__menu-bar"></span>
+        <span class="site-header__menu-bar"></span>
+      </span>
+    </button>
+    <nav class="site-header__nav" id="site-nav" aria-label="Principal">
       {{ nav_item('index', 'Início') }}
       {{ nav_item('projetos', 'Projetos', ['projetos', 'projeto_detalhe']) }}
       {{ nav_item('equipe', 'Equipe') }}
       {{ nav_item('contato', 'Contato') }}
     </nav>
   </div>
+  <div class="site-header__overlay" id="site-header-overlay" hidden></div>
 </header>

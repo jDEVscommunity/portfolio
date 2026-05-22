@@ -59,7 +59,7 @@
             <ul class="project-detail__stats">
               {% for r in projeto.resultados %}
               <li class="project-detail__stat">
-                <span class="project-detail__stat-value">{{ r.valor }}</span>
+                <span class="project-detail__stat-value" data-count-up data-count-to="{{ r.valor }}">{{ r.valor }}</span>
                 <span class="project-detail__stat-label">{{ r.label }}</span>
               </li>
               {% endfor %}

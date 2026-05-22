@@ -49,6 +49,11 @@
       return "Ir para o início";
     }
 
+    if (el.closest(".site-footer__links") && el.tagName === "A") {
+      var footerLabel = getVisibleLabel(el);
+      if (footerLabel) return "Ir para " + footerLabel;
+    }
+
     var aria = el.getAttribute("aria-label");
     var visible = getVisibleLabel(el);
     var href = el.getAttribute("href");
@@ -89,6 +94,7 @@
   function shouldEnhance(el) {
     if (!el.matches(INTERACTIVE_SELECTOR)) return false;
     if (el.closest(".site-header")) return false;
+    if (el.closest(".page-hero__decor-wrap")) return false;
     if (el.closest(".tooltip-host")) return false;
     if (el.classList.contains("no-tooltip") || el.dataset.tooltip === "off") return false;
     if (el.getAttribute("aria-hidden") === "true") return false;
@@ -102,8 +108,14 @@
     }
   }
 
+  function resolveTooltipPosition(el) {
+    if (el.dataset.tooltipPosition) return el.dataset.tooltipPosition;
+    if (el.closest(".site-footer")) return "bottom";
+    return "top";
+  }
+
   function wrapWithTooltip(el, text) {
-    var position = el.dataset.tooltipPosition || "top";
+    var position = resolveTooltipPosition(el);
     var host = document.createElement("span");
     host.className = "tooltip-host tooltip-host--" + position;
     hostModifiers(el, host);

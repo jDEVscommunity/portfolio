@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>jDEVs - {% block title %}{% endblock %}</title>
+  <link rel="icon" data-favicon sizes="any" href="{{ url_for('static', filename='img/favicon-light.ico') }}">
+  <link rel="icon" data-favicon type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-light-32.png') }}">
+  <link rel="icon" data-favicon type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-light-16.png') }}">
+  <link rel="apple-touch-icon" data-favicon sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon-light.png') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
@@ -17,6 +21,30 @@
         else if (matchMedia("(prefers-color-scheme: dark)").matches) theme = "dark";
       } catch (e) {}
       document.documentElement.setAttribute("data-theme", theme);
+      window.__jdevsFavicon = {
+        light: {
+          any: "{{ url_for('static', filename='img/favicon-light.ico') }}",
+          "32": "{{ url_for('static', filename='img/favicon-light-32.png') }}",
+          "16": "{{ url_for('static', filename='img/favicon-light-16.png') }}",
+          "180": "{{ url_for('static', filename='img/apple-touch-icon-light.png') }}"
+        },
+        dark: {
+          any: "{{ url_for('static', filename='img/favicon-dark.ico') }}",
+          "32": "{{ url_for('static', filename='img/favicon-dark-32.png') }}",
+          "16": "{{ url_for('static', filename='img/favicon-dark-16.png') }}",
+          "180": "{{ url_for('static', filename='img/apple-touch-icon-dark.png') }}"
+        }
+      };
+      (function (t) {
+        var set = window.__jdevsFavicon[t] || window.__jdevsFavicon.light;
+        document.querySelectorAll("link[data-favicon]").forEach(function (link) {
+          var size = link.getAttribute("sizes");
+          if (size === "any") link.href = set.any;
+          else if (size === "32x32") link.href = set["32"];
+          else if (size === "16x16") link.href = set["16"];
+          else if (size === "180x180") link.href = set["180"];
+        });
+      })(theme);
     })();
   </script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/theme.css') }}">
@@ -48,7 +76,9 @@
   {% endcall %}
 
   <script src="{{ url_for('static', filename='js/tooltip.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/header-nav.js') }}"></script>
   <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/hero-count-up.js') }}" defer></script>
   <script src="{{ url_for('static', filename='js/page-scroll.js') }}" defer></script>
   {% block extra_js %}{% endblock %}
 </body>

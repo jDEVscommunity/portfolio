@@ -39,15 +39,66 @@
           'Categorias'
         ) }}
       </div>
-      <div class="page-hero__stage" aria-hidden="true">
-        <div class="page-hero__decor">
-          <div class="page-hero__decor-ring"></div>
-          <div class="page-hero__decor-ring page-hero__decor-ring--inner"></div>
-          <div class="page-hero__decor-core">jDEVs</div>
-          <span class="page-hero__decor-chip page-hero__decor-chip--1">React</span>
-          <span class="page-hero__decor-chip page-hero__decor-chip--2">APIs</span>
-          <span class="page-hero__decor-chip page-hero__decor-chip--3">PostgreSQL</span>
-          <span class="page-hero__decor-chip page-hero__decor-chip--4">Go-live</span>
+      <div class="page-hero__stage">
+        <div class="page-hero__decor-wrap">
+          <div class="page-hero__decor" aria-hidden="true">
+            <div class="page-hero__decor-ring"></div>
+            <div class="page-hero__decor-ring page-hero__decor-ring--inner"></div>
+            <div class="page-hero__decor-core">jDEVs</div>
+            {% if tecnologias_orbit %}
+            <div
+              class="page-hero__decor-orbit"
+              style="--orbit-count: {{ tecnologias_orbit|length }}"
+            >
+              {% for tech in tecnologias_orbit %}
+              <div
+                class="page-hero__decor-orbit-item"
+                style="--orbit-angle: {{ (loop.index0 * 360 / tecnologias_orbit|length) }}deg"
+              >
+                <span class="page-hero__decor-orbit-icon">
+                  <button
+                    type="button"
+                    class="page-hero__decor-orbit-trigger no-tooltip"
+                    data-tooltip="off"
+                    data-tech-name="{{ tech.name }}"
+                    data-tech-briefing="{{ tech.briefing }}"
+                    aria-label="{{ tech.name }}"
+                    aria-describedby="page-hero-tech-briefing"
+                  >
+                    <span class="page-hero__decor-orbit-icon-inner">
+                      <img
+                        src="{{ url_for('static', filename='img/tech/' ~ tech.slug ~ '.svg') }}"
+                        alt=""
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                    </span>
+                  </button>
+                </span>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+          {% if tecnologias_orbit %}
+          <div
+            class="page-hero__decor-briefing"
+            id="page-hero-tech-briefing"
+            role="region"
+            aria-label="Resumo da tecnologia"
+            data-default-title="Conhecimentos"
+            data-default-text="Passe o cursor sobre uma tecnologia do círculo para ver como a usamos."
+          >
+            <div class="page-hero__decor-briefing-content">
+              <h3 class="page-hero__decor-briefing-name">Conhecimentos</h3>
+              <p class="page-hero__decor-briefing-text">
+                Passe o cursor sobre uma tecnologia do círculo para ver como a usamos.
+              </p>
+            </div>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -133,4 +184,5 @@
 {% block extra_js %}
 <script src="{{ url_for('static', filename='js/landing-section.js') }}" defer></script>
 <script src="{{ url_for('static', filename='js/pages-filter.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/page-hero-orbit.js') }}" defer></script>
 {% endblock %}

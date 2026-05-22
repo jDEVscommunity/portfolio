@@ -1,52 +1,89 @@
-{% from 'components/hero/macros.html' import hero_eyebrow, hero_title_h2, hero_lead, hero_actions %}
+{% from 'components/hero/macros.html' import hero_eyebrow, hero_title, hero_lead, hero_highlights, hero_actions, hero_footer %}
 
 <section class="page-intro page-intro--contato" aria-label="Contato">
   <div class="page-intro__frame">
-    <div class="page-intro__mail-bg" aria-hidden="true">
-      <svg class="page-intro__mail-icon" viewBox="0 0 24 24" focusable="false">
-        <path d="M4 6h16v12H4V6z"/>
-        <path d="m4 7 8 6 8-6"/>
-      </svg>
-    </div>
-
     <div class="page-intro__layout page-intro__layout--contato">
-      <div class="page-intro__copy page-intro__copy--center">
-        {{ hero_eyebrow('Vamos conversar') }}
-        {{ hero_title_h2('Conte o contexto do seu produto') }}
+      <div class="page-intro__copy">
+        {{ hero_eyebrow('Vamos conversar', true) }}
+        {{ hero_title(['Conte o contexto', 'do seu produto.']) }}
         {{ hero_lead(
           'Respondemos com próximos passos claros — sem formulário longo na primeira '
-          'mensagem. Use o e-mail ou o formulário abaixo.'
+          'mensagem. Use o e-mail direto ou o formulário abaixo.'
         ) }}
-
-        <a href="mailto:jdevscommunity@protonmail.com" class="page-intro__email">
-          jdevscommunity@protonmail.com
-        </a>
-
-        <ol class="page-intro__steps" aria-label="Fluxo inicial">
-          <li class="page-intro__step">
-            <span class="page-intro__step-num">01</span>
-            <span class="page-intro__step-label">Briefing</span>
-          </li>
-          <li class="page-intro__step" aria-hidden="true">
-            <span class="page-intro__step-connector"></span>
-          </li>
-          <li class="page-intro__step">
-            <span class="page-intro__step-num">02</span>
-            <span class="page-intro__step-label">Proposta</span>
-          </li>
-          <li class="page-intro__step" aria-hidden="true">
-            <span class="page-intro__step-connector"></span>
-          </li>
-          <li class="page-intro__step">
-            <span class="page-intro__step-num">03</span>
-            <span class="page-intro__step-label">Kick-off</span>
-          </li>
-        </ol>
-
+        {{ hero_highlights([
+          {'value': '1', 'label': 'dia útil para resposta'},
+          {'value': 'NDA', 'label': 'sob demanda'},
+          {'value': '100%', 'label': 'remoto · squads dedicados'},
+        ]) }}
         {{ hero_actions([
           {'url': '#mensagem', 'label': 'Ir ao formulário', 'variant': 'primary'},
           {'url': url_for('projetos'), 'label': 'Ver projetos', 'variant': 'secondary'},
         ]) }}
+        {{ hero_footer(
+          ['Briefing', 'Proposta', 'Kick-off'],
+          'Fluxo inicial'
+        ) }}
+      </div>
+
+      <div class="page-intro__stage" aria-label="Canais e próximos passos">
+        <div class="page-intro__hub">
+          <a
+            href="mailto:jdevscommunity@protonmail.com"
+            class="page-intro__hub-email"
+          >
+            <span class="page-intro__hub-email-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M4 6h16v12H4V6z"/>
+                <path d="m4 7 8 6 8-6"/>
+              </svg>
+            </span>
+            <span class="page-intro__hub-email-body">
+              <span class="page-intro__hub-email-label">E-mail direto</span>
+              <span class="page-intro__hub-email-value">jdevscommunity@protonmail.com</span>
+              <span class="page-intro__hub-email-hint">Resposta em até 1 dia útil · Seg–Sex</span>
+            </span>
+            <span class="page-intro__hub-email-cta" aria-hidden="true">→</span>
+          </a>
+
+          <ol class="page-intro__hub-steps" aria-label="Fluxo após o primeiro contato">
+            <li class="page-intro__hub-step">
+              <span class="page-intro__hub-step-num" aria-hidden="true">01</span>
+              <div class="page-intro__hub-step-body">
+                <span class="page-intro__hub-step-title">Briefing</span>
+                <p class="page-intro__hub-step-desc">
+                  Objetivo, usuários, integrações críticas e prazo — mesmo em tópicos.
+                </p>
+              </div>
+            </li>
+            <li class="page-intro__hub-step">
+              <span class="page-intro__hub-step-num" aria-hidden="true">02</span>
+              <div class="page-intro__hub-step-body">
+                <span class="page-intro__hub-step-title">Proposta</span>
+                <p class="page-intro__hub-step-desc">
+                  Fases com entregáveis, squad sugerido e critérios de sucesso.
+                </p>
+              </div>
+            </li>
+            <li class="page-intro__hub-step">
+              <span class="page-intro__hub-step-num" aria-hidden="true">03</span>
+              <div class="page-intro__hub-step-body">
+                <span class="page-intro__hub-step-title">Kick-off</span>
+                <p class="page-intro__hub-step-desc">
+                  Discovery alinhado e primeiro sprint em até duas semanas.
+                </p>
+              </div>
+            </li>
+          </ol>
+
+          <div class="page-intro__hub-brief">
+            <p class="page-intro__hub-brief-title">O que acelerar na primeira mensagem</p>
+            <ul class="page-intro__hub-brief-list">
+              <li>Objetivo do produto e estágio atual</li>
+              <li>Prazo desejado e restrições de compliance</li>
+              <li>Integrações ou legados que não podem parar</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>

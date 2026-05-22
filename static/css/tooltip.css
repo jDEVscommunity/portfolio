@@ -1,13 +1,8 @@
 :root {
-  --tooltip-bg: rgba(0, 0, 0, 0.9);
-  --tooltip-text: #fff;
-  --tooltip-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-}
-
-[data-theme="dark"] {
-  --tooltip-bg: rgba(255, 255, 255, 0.92);
-  --tooltip-text: #000;
-  --tooltip-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+  --tooltip-bg: color-mix(in srgb, var(--text) 92%, var(--bg));
+  --tooltip-text: var(--bg);
+  --tooltip-border: color-mix(in srgb, var(--bg) 28%, var(--text) 72%);
+  --tooltip-shadow: 0 4px 14px color-mix(in srgb, var(--text) 22%, var(--bg));
 }
 
 .tooltip-host {
@@ -25,21 +20,41 @@
 
 .tooltip-host--fixed {
   position: fixed;
-  right: 2.5rem;
-  bottom: 2.5rem;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: max(1rem, env(safe-area-inset-bottom, 0px));
   z-index: 1000;
+}
+
+@media (max-width: 640px) {
+  .tooltip-host--fixed {
+    right: max(0.75rem, env(safe-area-inset-right, 0px));
+    bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .tooltip-host--fixed .tooltip {
+    display: none;
+  }
+}
+
+html.nav-open .tooltip-host--fixed {
+  z-index: 98;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .tooltip {
   position: absolute;
   z-index: 1;
   padding: 0.4375rem 0.75rem;
+  font-family: inherit;
   font-size: 0.6875rem;
   font-weight: 400;
   line-height: 1.35;
   letter-spacing: 0.03em;
   text-transform: none;
   white-space: nowrap;
+  border: 1px solid var(--tooltip-border);
   border-radius: 0.375rem;
   background-color: var(--tooltip-bg);
   color: var(--tooltip-text);
@@ -50,15 +65,19 @@
   transition:
     opacity 0.2s ease,
     visibility 0.2s ease,
-    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1);
-  transition-delay: 0s, 0s, 0s;
+    transform 0.2s cubic-bezier(0.33, 1, 0.68, 1),
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  transition-delay: 0s, 0s, 0s, 0s, 0s, 0s, 0s;
 }
 
 .tooltip-host:hover .tooltip,
 .tooltip-host:focus-within .tooltip {
   opacity: 1;
   visibility: visible;
-  transition-delay: 0.35s, 0.35s, 0.35s;
+  transition-delay: 0.35s, 0.35s, 0.35s, 0s, 0s, 0s, 0s;
 }
 
 .tooltip-host--top .tooltip {

@@ -122,6 +122,18 @@ a {
   display: block;
 }
 
+@media (max-width: 640px) {
+  .theme-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .theme-toggle__icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .theme-toggle,
   .theme-toggle:hover {

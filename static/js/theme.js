@@ -13,8 +13,24 @@
     return getStoredTheme() ?? (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   }
 
+  function applyFavicon(theme) {
+    const fav = window.__jdevsFavicon;
+    if (!fav) return;
+    const set = fav[theme] || fav.light;
+    document.querySelectorAll("link[data-favicon]").forEach((link) => {
+      const size = link.getAttribute("sizes");
+      if (size === "any") link.href = set.any;
+      else if (size === "32x32") link.href = set["32"];
+      else if (size === "16x16") link.href = set["16"];
+      else if (size === "180x180") link.href = set["180"];
+    });
+  }
+
+  window.jdevsApplyFavicon = applyFavicon;
+
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
+    applyFavicon(theme);
     const label = theme === "dark" ? "Ativar tema claro" : "Ativar tema escuro";
     const btn = document.getElementById("theme-toggle");
     const tip = document.getElementById("theme-toggle-tooltip");
